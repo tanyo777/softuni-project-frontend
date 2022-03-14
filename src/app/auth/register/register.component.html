@@ -1,0 +1,50 @@
+<app-navigation></app-navigation>
+<div class="container-register">
+    <form [formGroup]="registerForm" (ngSubmit)="submitRegisterForm()">
+        <h2>Sign up</h2>
+
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Full Name</mat-label>
+            <input matInput placeholder="test@example.com" formControlName="fullName">
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Username</mat-label>
+            <input matInput placeholder="Username" formControlName="username" required>
+            <mat-error *ngIf="registerForm.controls['username'].hasError('required')">Username is required</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Enter your email</mat-label>
+            <input matInput placeholder="test@example.com" formControlName="email" required>
+            <mat-error *ngIf="registerForm.controls['email'].hasError('required')">Email is required</mat-error>
+            <mat-error *ngIf="registerForm.controls['email'].hasError('email')">Email is invalid</mat-error>
+        </mat-form-field>
+
+
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+            <mat-error *ngIf="registerForm.controls['password'].hasError('required')">Passowrd is required</mat-error>
+            <mat-error *ngIf="registerForm.controls['password'].hasError('minlength')">Passowrd must be atleast 6 characters</mat-error>
+            
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="input">
+            <mat-label>Confirm password</mat-label>
+            
+            <input matInput type="password" placeholder="Confirm password" formControlName="confirmPassword" required>
+            <mat-error *ngIf="registerForm.controls['confirmPassword'].hasError('required')">Password confirmation is required</mat-error>
+            <mat-error *ngIf="registerForm.controls['confirmPassword'].hasError('matching')" style="margin-bottom: 10px;">Passwords don't match</mat-error>
+        </mat-form-field>
+
+
+        <button mat-button class="submit-button" type="submit">Sign up</button>
+        <hr width="70%">
+        <a routerLink="/login">Already have an account? Log in</a>
+    </form>
+</div>

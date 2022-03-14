@@ -1,0 +1,61 @@
+.container-login {
+    width: 100%;
+    height: 92vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url('../../../assets/bg-login.jpeg');
+    background-position: center;
+    background-size: cover;
+    
+  
+
+    form {
+        width: 25%;
+        box-shadow: 3px 3px 8px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        background: white;
+
+        @media screen and (max-width: 1300px) {
+            width: 40%;
+        }
+
+        @media screen and (max-width: 750px) {
+            width: 90%;
+        }
+
+
+        a {
+            text-decoration: none;
+            margin: 30px 0px 30px 0px;
+        }
+
+        h2 {
+            color: rgb(114, 111, 111);
+            margin: 30px 0px 30px 0px;
+        }
+
+
+        .submit-button {
+            background: #0a1128;
+            color: white;
+            width: 70%;
+            margin-top: 10px;
+            &:hover {
+                transition-duration: 0.2s;
+                background: white;
+                background: #333a52;
+                color: white;
+                
+            }
+        }
+
+        .input {
+            width: 70%;
+        }
+    }
+}

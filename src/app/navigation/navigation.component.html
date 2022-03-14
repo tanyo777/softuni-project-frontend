@@ -1,0 +1,19 @@
+<mat-toolbar class="toolbar">
+  <div class="header">
+    <img src="../../assets/logo.png" alt="logo" />
+    <h3>Proto Software</h3>
+  </div>
+  <div class="routes">
+    <a routerLink="/">Home</a>
+    <a routerLink="/login">Login</a>
+    <a routerLink="/register">Register</a>
+  </div>
+
+  <button mat-button [matMenuTriggerFor]="menu" class="menu">
+      <mat-icon style="color: white;">menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" class="menu">
+    <button mat-menu-item routerLink="/login">Login</button>
+    <button mat-menu-item routerLink="/register">Register</button>
+  </mat-menu>
+</mat-toolbar>

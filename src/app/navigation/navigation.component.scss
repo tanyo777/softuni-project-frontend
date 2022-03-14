@@ -1,0 +1,50 @@
+
+.toolbar {
+    background-color: #0a1128;
+    height: 8vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .menu {
+        display: none;
+    }
+
+    @media screen and (max-width: 850px) {
+        .routes {
+            display: none;
+        }
+        .menu {
+            display: block;
+        }
+    }
+
+    .header {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        h3 {
+            color: whitesmoke;
+        }
+    }
+
+    img {
+        width: 10vh;
+        height: 5vh;
+    }
+
+    a {
+        color: white;
+        text-decoration: none;
+        margin: 0px 20px 0px 20px;
+        font-size: 20px;
+        padding: 10px 20px;
+
+        &:hover {
+            transition-duration: 0.5s;
+            background: white;
+            color: #0a1128;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+    }
+}

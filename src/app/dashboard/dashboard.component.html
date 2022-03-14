@@ -1,0 +1,24 @@
+
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="sidenav fixed" mode="over">
+      <h3>Tanyo Nikolov</h3>
+      <app-profilepic></app-profilepic>
+      <a routerLink="/dashboard" (click)="drawer.close()">Dashboard</a>
+      <br>
+      <a routerLink="/dashboard/projects" (click)="drawer.close()">Projects</a>
+      <br>
+    </mat-drawer>
+  
+    <mat-toolbar class="fixed">
+        <span>Proto Software</span>
+        <span class="example-spacer"></span>
+        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+      </mat-toolbar>
+  
+      <div class="container">
+          <h1>Dashboard</h1>
+        <router-outlet></router-outlet>
+      </div>
+  </mat-drawer-container>

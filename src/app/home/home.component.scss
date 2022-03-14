@@ -1,0 +1,52 @@
+main {
+    height: 92vh;
+    background: linear-gradient(to bottom, #4b749f, #243748);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    .container {
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+
+        h1 {
+            color: white;
+            font-size: 40px;
+        }
+    
+    
+        .benefits {
+            color: white;
+            .benefit {
+                padding: 10px 20px;
+                margin: 10px 0px 10px 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid black;
+                font-size: 20px;
+                background: white;
+                border-radius: 10px;
+                color: #0A1127;
+            }
+        }
+
+        .get-started-card {
+            margin-top: 30px;
+            a {
+                text-decoration: none;
+                font-size: 25px;
+                color: #243748;
+                background: white;
+                padding: 12px 35px;
+                border-radius: 20px;
+            }
+        }
+    }
+
+    
+}
+
