@@ -22,6 +22,7 @@ import {MatMenuModule} from '@angular/material/menu';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { NotfoundComponent } from './auth/notfound/notfound.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     NavigationComponent,
     HomeComponent,
     SpinnerComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,
