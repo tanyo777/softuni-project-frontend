@@ -1,12 +1,15 @@
 
 <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="sidenav fixed" mode="over">
-      <h3>Tanyo Nikolov</h3>
+      <h2>{{ user?.fullName }}</h2>
+      <h3>Email: {{ user?.email }}</h3>
+      <h3>Username: {{ user?.username }}</h3>
       <app-profilepic></app-profilepic>
       <a routerLink="/dashboard" (click)="drawer.close()">Dashboard</a>
       <br>
       <a routerLink="/dashboard/projects" (click)="drawer.close()">Projects</a>
       <br>
+      <button (click)="logoutUser()">Logout</button>
     </mat-drawer>
   
     <mat-toolbar class="fixed">

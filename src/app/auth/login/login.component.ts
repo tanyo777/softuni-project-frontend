@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from 'src/app/services/user.service';
+import { CookieService } from "ngx-cookie";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +22,12 @@ export class LoginComponent implements OnInit {
 
   hide: boolean = true;
 
-  constructor() {
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private cookieService: CookieService,
+    private _snackBar: MatSnackBar,
+  ) {
     this.loading = false;
   }
 
@@ -29,13 +38,44 @@ export class LoginComponent implements OnInit {
     this.hide = !this.hide;
   }
 
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
+
   submitLoginForm() {
     if(this.loginForm.valid) {
       this.loading = true;
-      console.log(this.loginForm.value);
-      setTimeout(() => {
-        this.loading = false;
-      }, 2000);
+      
+      const { email, password} = this.loginForm.value;
+
+      // login
+      this.userService.loginUser(email, password).subscribe({
+        next: (res: any) => {
+        
+
+          if(res.error) {
+
+            // if error show snackbar with the error message
+            const error = res.error;
+            this.openSnackBar(error, "close");
+          } else {
+            // get jwt token from the server
+            const token = res.token;
+
+            // save it in a cookie and localstorage
+            // set expiry date
+            this.cookieService.put('token', token);
+            localStorage.setItem("token", token);
+
+            // navigate to dashboard
+            this.router.navigate(['/dashboard']);
+          }
+          this.loading = false;
+
+          this.loading = false;
+        }
+      });
+
     }
   }
 

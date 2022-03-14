@@ -6,6 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 // material
 import { MatIconModule } from "@angular/material/icon" ;
@@ -16,13 +17,16 @@ import { MatInputModule } from "@angular/material/input";
 import { MatButtonModule } from "@angular/material/button";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import {MatMenuModule} from '@angular/material/menu';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 // reactive form 
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { NotfoundComponent } from './auth/notfound/notfound.component';
+
+
+import { CookieModule } from 'ngx-cookie';
 
 @NgModule({
   declarations: [
@@ -46,7 +50,10 @@ import { NotfoundComponent } from './auth/notfound/notfound.component';
     MatInputModule,
     MatButtonModule,
     MatProgressSpinnerModule,
-    MatMenuModule
+    MatMenuModule,
+    HttpClientModule,
+    MatSnackBarModule,
+    CookieModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],

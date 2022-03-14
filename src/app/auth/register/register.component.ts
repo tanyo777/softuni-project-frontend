@@ -1,6 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { matchValidator } from 'src/app/utils/validators/rePassword';
+import { environment } from 'src/environments/environment';
+import { CookieService } from "ngx-cookie";
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -20,19 +25,60 @@ export class RegisterComponent implements OnInit {
 
   })
 
+  // hide/show password
   hide: boolean = true;
 
-  constructor() { }
+  // component loading
+  loading: boolean;
+
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action);
+  }
+
+  constructor(
+    private httpClient: HttpClient,
+    private _snackBar: MatSnackBar,
+    private cookieService: CookieService,
+    private router: Router
+    ) {
+    this.loading = false;
+  }
 
   ngOnInit(): void {
   }
 
   submitRegisterForm() {
     if(this.registerForm.valid) {
-        console.log(this.registerForm.value);
+      this.loading = true;
+        const url = `${environment.baseUrl}/register`;
 
-        // send request to the API
-        // redirect if the request succeeds
+
+        this.httpClient.post(url, this.registerForm.value).subscribe({
+          next: (response: any) => {
+            if(response.error) {
+
+              // if error show snackbar with the error message
+              const error = response.error;
+              this.openSnackBar(error, "close");
+            } else {
+              // get jwt token from the server
+              const token = response.token.token;
+
+              // save it in a cookie and localstorage
+              // set expiry date
+              this.cookieService.put('token', token);
+              localStorage.setItem("token", token);
+
+              // navigate to dashboard
+              this.router.navigate(['/dashboard']);
+            }
+            this.loading = false;
+          },
+          error: (errObject: object) => {
+            this.loading = false;
+          }
+        });
     }
   }
 }
