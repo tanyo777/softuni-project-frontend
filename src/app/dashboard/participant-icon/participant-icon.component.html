@@ -1,0 +1,8 @@
+<div
+  class="participant-icon"
+  *ngIf="participant"
+  [matTooltip]='participant.fullName'
+  aria-label="Button that shows a red tooltip"
+>
+  {{ firstLetterOfTheName }}
+</div>

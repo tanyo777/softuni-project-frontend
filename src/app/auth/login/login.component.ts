@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 import { CookieService } from "ngx-cookie";
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Title } from '@angular/platform-browser';
+
 
 @Component({
   selector: 'app-login',
@@ -27,11 +29,13 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private cookieService: CookieService,
     private _snackBar: MatSnackBar,
+    private titleService: Title
   ) {
     this.loading = false;
   }
-
+  
   ngOnInit(): void {
+    this.titleService.setTitle("Login");
   }
 
   toggleShowPassword() {

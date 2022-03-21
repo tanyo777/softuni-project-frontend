@@ -1,0 +1,82 @@
+.create-project-container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    width: 50%;
+    box-shadow: 1px 1px 4px gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @media screen and (max-width: 995px) {
+        width: 60%;
+    }
+
+    @media screen and (max-width: 780px) {
+        width: 80%;
+    }
+
+
+    @media screen and (max-width: 780px) {
+        width: 95%;
+    }
+
+
+    h1 {
+        padding: 40px 0px 20px 0px;
+    }
+
+    mat-form-field {
+        width: 70%;
+        textarea {
+            height: 20vh;
+        }
+
+        @media screen and (max-width: 780px) {
+            width: 85%;
+        }
+    }
+
+
+
+    
+    .container-buttons {
+        width: 70%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 0px 0px 20px 0px;
+
+
+        
+
+        .create-btn {
+            margin-right: 20px;
+            padding: 7px 14px;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            background: #0052CC;
+            &:hover {
+                background: #5285d2;
+                transition-duration: 0.3s;
+            }
+        }
+
+        .cancel-btn {
+            font-weight: bold;
+            padding: 7px 14px;
+            border: none;
+            background: whitesmoke;
+            color: #0052CC;
+        }
+    }
+
+  }
+}

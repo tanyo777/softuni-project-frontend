@@ -2,8 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from "ngx-cookie";
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-
+import { IUser } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -22,9 +23,8 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
-  getUser() {
-    const token = this.cookieService.get("token");
-    return this.httpClient.get(`${environment.baseUrl}/dashboard`, {headers: { token }});
+  getUser(): Observable<IUser> {
+    return this.httpClient.get<IUser>(`${environment.baseUrl}/dashboard`);
   }
 
 

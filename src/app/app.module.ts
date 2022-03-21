@@ -6,7 +6,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // material
 import { MatIconModule } from "@angular/material/icon" ;
@@ -24,9 +24,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { NotfoundComponent } from './auth/notfound/notfound.component';
-
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 import { CookieModule } from 'ngx-cookie';
+
 
 @NgModule({
   declarations: [
@@ -55,7 +56,9 @@ import { CookieModule } from 'ngx-cookie';
     MatSnackBarModule,
     CookieModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

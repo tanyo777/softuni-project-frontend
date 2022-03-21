@@ -1,0 +1,56 @@
+<div class="create-project-container" *ngIf="!loading">
+    <form [formGroup]="newProjectForm" (ngSubmit)="createProject()">
+        <h1>Create a project</h1>
+
+
+        <!-- Name -->
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Project name</mat-label>
+            <input matInput formControlName="name">
+            <mat-error *ngIf="newProjectForm.controls['name'].hasError('required')">Project name is required</mat-error>
+        </mat-form-field>
+
+
+        <!-- Project Key-->
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Project key</mat-label>
+            <input matInput formControlName="key">
+            <mat-error *ngIf="newProjectForm.controls['key'].hasError('required')">Project key is required</mat-error>
+        </mat-form-field>
+
+
+        <!-- Project Type-->
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Project Type</mat-label>
+            <input matInput formControlName="projectType">
+            <mat-error *ngIf="newProjectForm.controls['projectType'].hasError('required')">Project Type is required</mat-error>
+        </mat-form-field>
+
+
+        <!-- Project Category -->
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Project Category</mat-label>
+            <input matInput formControlName="projectCategory">
+            <mat-error *ngIf="newProjectForm.controls['projectCategory'].hasError('required')">Project Category is required</mat-error>
+        </mat-form-field>
+
+
+        <!-- Description -->
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>            
+        </mat-form-field>
+
+
+        <div class="container-buttons">
+            <button class="create-btn" type="submit">Create project</button>
+            <button class="cancel-btn">Cancel</button>
+        </div>
+
+    </form>
+</div>
+
+
+<div *ngIf="loading">
+    <h1>Loading...</h1>
+</div>

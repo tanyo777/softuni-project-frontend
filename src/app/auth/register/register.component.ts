@@ -6,6 +6,7 @@ import { matchValidator } from 'src/app/utils/validators/rePassword';
 import { environment } from 'src/environments/environment';
 import { CookieService } from "ngx-cookie";
 import { Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -40,12 +41,14 @@ export class RegisterComponent implements OnInit {
     private httpClient: HttpClient,
     private _snackBar: MatSnackBar,
     private cookieService: CookieService,
-    private router: Router
+    private router: Router,
+    private titleService: Title
     ) {
     this.loading = false;
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle("Register");
   }
 
   submitRegisterForm() {

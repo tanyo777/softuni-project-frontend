@@ -1,0 +1,27 @@
+
+.container-create-issue {
+    height: 80vh;
+    width: 45vw;
+    cursor: default;
+
+    @media screen and (max-width: 750px) {
+        width: 70vw;
+    }
+
+    mat-icon {
+        background: tomato;
+    }
+
+    mat-form-field {
+        width: 70%;
+    }
+    .textarea {
+        height: 25vh;
+        width: 100%;
+    }
+
+    .priority {
+        margin-top: 20px;
+    }
+    
+}

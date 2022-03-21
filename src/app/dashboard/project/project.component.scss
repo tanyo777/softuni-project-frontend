@@ -1,0 +1,22 @@
+.project-container {
+    width: 100%;
+    margin-top: 65px;
+    padding: 30px;
+
+    .header-component {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    
+        hr {
+            width: 100%;
+        }
+
+        .participants {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+    }
+}

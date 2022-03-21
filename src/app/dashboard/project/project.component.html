@@ -1,1 +1,14 @@
-<p>project works!</p>
+<div class="project-container">
+    <!-- Progress Bar -->
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+    <div *ngIf="!loading" class="header-component">
+        <div class="participants">
+            <h1>{{ projectData.name }} (Lead: {{ projectData.lead.fullName }} )</h1>
+            <app-participant-icon *ngFor="let participant of projectData.participants" [participant]="participant"></app-participant-icon>
+        </div>
+    </div>
+    <hr>
+
+
+</div>

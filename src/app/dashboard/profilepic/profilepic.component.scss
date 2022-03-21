@@ -1,10 +1,12 @@
 .container-image {
     img {
         width: 120px;
+        border: 2px solid yellow;
         height: 120px;
         border-radius: 100%;
+        margin: 20px 0px 20px 0px;
+        box-shadow: 1px 1px 5px gray;
     }
-    border: 1px solid black;
     display: flex;
     justify-content: center;
     align-items: center;
