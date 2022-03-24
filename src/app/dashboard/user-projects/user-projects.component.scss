@@ -16,6 +16,25 @@ height: 100vh;
   table {
       box-shadow: 2px 1px 5px gray;
       width: 90%;
+      td {
+        text-align: center;
+      }
+
+      th {
+        text-align: center;
+      }
+
+      @media screen and (max-width: 490px) {
+        td {
+          font-size: 13px;
+        }
+      }
+
+      @media screen and (max-width: 550px) {
+        width: 99%;
+      }
+
+
 
       .project-route {
         cursor: pointer;
@@ -24,7 +43,23 @@ height: 100vh;
           text-decoration: underline;
           transition-duration: 0.3s;
         }
+
+        @media screen and (max-width: 490px) {
+          font-size: 15px;
+        }
+        @media screen and (max-width: 440px) {
+          font-size: 13px;
+        }
+
+        @media screen and (max-width: 440px) {
+          td {
+            padding: 20px;
+          }
+        }
       }
+
+
+
   }
   .project {
     border: 1px solid red;

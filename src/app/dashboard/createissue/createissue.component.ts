@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { TaskService } from 'src/app/services/task.service';
+import { userSelector} from "../../state/selectors/user";
 
 interface IIssue {
   type: string;
@@ -22,6 +26,16 @@ interface IPriority {
 export class CreateissueComponent implements OnInit {
 
 
+
+  createIssueForm = new FormGroup({
+    project: new FormControl("", [Validators.required]),
+    issueType: new FormControl("", [Validators.required]),
+    summary: new FormControl("", [Validators.required]),
+    reporter: new FormControl("", [Validators.required]),
+    description: new FormControl(""),
+    priority: new FormControl("", [Validators.required])
+  })
+
   // selectedType
   selectedType?: IIssue;
 
@@ -37,7 +51,14 @@ export class CreateissueComponent implements OnInit {
   seelectedPriority?: IPriority;
 
 
-  constructor() {
+  projects: any[] = [];
+
+
+  constructor(
+    private store: Store, 
+    private taskService: TaskService,
+    private router: Router
+  ) {
     this.issueTypes = [
       {type: "Bug", value: "Bug", icon: "<mat-icon>bug_report</mat-icon>"},
       {type: "Task", value: "Task", icon: "<mat-icon>bug_report</mat-icon>"},
@@ -60,6 +81,24 @@ export class CreateissueComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.select(userSelector).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.projects = res.projects;
+      }
+    });
+  }
+
+
+  submitIssue() {
+    if(this.createIssueForm.valid) {
+      const payload = this.createIssueForm.value;
+      this.taskService.postTask(payload).subscribe((res: any) => {
+        if(res.msg) {
+          this.router.navigate(['/dashboard/projects']);
+        }
+      });
+    }
   }
 
 }

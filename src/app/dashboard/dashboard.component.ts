@@ -4,6 +4,9 @@ import { UserService } from '../services/user.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateissueComponent } from './createissue/createissue.component';
 import { Title } from '@angular/platform-browser';
+import { Store } from '@ngrx/store';
+import { populateUser } from '../state/actions/user';
+import { userSelector } from '../state/selectors/user';
 
 
 @Component({
@@ -19,7 +22,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private userService: UserService,
     public dialog: MatDialog,
-    private titleService: Title
+    private titleService: Title,
+    private store: Store
     ) { 
   }
 
@@ -29,6 +33,7 @@ export class DashboardComponent implements OnInit {
       next: (res: any) => {
         if(res.user) {
           this.user = res.user;
+           this.store.dispatch(populateUser({ user: res.user }));
         } 
       }
     });

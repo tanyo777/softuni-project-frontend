@@ -27,7 +27,8 @@ import { NotfoundComponent } from './auth/notfound/notfound.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 
 import { CookieModule } from 'ngx-cookie';
-
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from './state/reducers/userReducer';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,9 @@ import { CookieModule } from 'ngx-cookie';
     MatMenuModule,
     HttpClientModule,
     MatSnackBarModule,
-    CookieModule.forRoot()
+    CookieModule.forRoot(),
+    StoreModule
+    // StoreModule.forRoot({ userReducer: userReducer })
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}

@@ -1,22 +1,60 @@
 .project-container {
-    width: 100%;
+  width: 100%;
+  padding: 30px;
+  height: 100vh;
+
+  .loading-indicator {
+      margin-top: 65px;
+  }
+
+  .no-tasks {
+    height: 75vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    h2 {
+      text-shadow: 1px 1px gray;
+      width: 70%;
+      text-align: center;
+      border-radius: 5px;
+      padding: 10px;
+      background-color: #f2bb06;
+      color: white;
+    }
+  }
+
+  .header-component {
     margin-top: 65px;
-    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    .header-component {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    
-        hr {
-            width: 100%;
-        }
-
-        .participants {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
+    h1 {
+        @media screen and (max-width: 500px){
+            font-size: 17px;
         }
     }
+
+    hr {
+      width: 100%;
+    }
+
+    .participants {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      @media  screen and (max-width: 570px) {
+          flex-direction: column;
+      }
+    }
+
+  }
+
+  .tasks-container {
+    box-shadow: 4px 5px 12px gray;
+    max-height: 75vh;
+    overflow-x: scroll;
+  }
 }

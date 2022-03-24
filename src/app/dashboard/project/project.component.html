@@ -1,6 +1,6 @@
 <div class="project-container">
     <!-- Progress Bar -->
-    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate" class="loading-indicator"></mat-progress-bar>
 
     <div *ngIf="!loading" class="header-component">
         <div class="participants">
@@ -9,6 +9,19 @@
         </div>
     </div>
     <hr>
+    <div class="tasks-container" *ngIf="projectData?.tasks.length && !loading">
+        <div *ngFor="let task of projectData?.tasks">
+            <app-task [task]="task"></app-task>
+        </div>
+    </div>
 
+    <div class="no-tasks" *ngIf="!projectData?.tasks.length && !loading">
+        <h2>There are no tasks for that project yet!</h2>
+    </div>
 
 </div>
+
+
+
+
+

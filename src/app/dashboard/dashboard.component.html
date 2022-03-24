@@ -1,32 +1,48 @@
-
 <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="sidenav fixed" mode="over">
-      <app-profilepic></app-profilepic>
-      <h2>{{ user?.fullName }}</h2>
-      <h3><mat-icon>account_box</mat-icon>{{ user?.username }}</h3>
-      <h3><mat-icon> email</mat-icon> {{ user?.email }}</h3>
+  <mat-drawer #drawer class="sidenav fixed" mode="over">
+    <app-profilepic></app-profilepic>
+    <h2>{{ user?.fullName }}</h2>
+    <h3><mat-icon>account_box</mat-icon>{{ user?.username }}</h3>
+    <h3><mat-icon> email</mat-icon> {{ user?.email }}</h3>
 
+    <div class="links">
+      <a routerLink="/dashboard" (click)="drawer.close()">Dashboard</a>
+      <a routerLink="/dashboard/projects" (click)="drawer.close()">Projects</a>
+      <a routerLink="/dashboard/create-project" (click)="drawer.close()"
+        >Create project</a
+      >
+      <a routerLink="/dashboard/profile" (click)="drawer.close()">Profile</a>
+      <button (click)="logoutUser()">
+        Logout<mat-icon>exit_to_app</mat-icon>
+      </button>
+      <mat-icon class="close-button" (click)="drawer.close()">close</mat-icon>
+    </div>
+  </mat-drawer>
 
-      <div class="links">
-        <a routerLink="/dashboard" (click)="drawer.close()">Dashboard</a>
-        <a routerLink="/dashboard/projects" (click)="drawer.close()">Projects</a>
-        <a routerLink="/dashboard/create-project" (click)="drawer.close()">Create project</a>
-        <button (click)="logoutUser()">Logout<mat-icon>exit_to_app</mat-icon></button>
-         <!-- <button (click)="drawer.close()" class="close-button" style="position: fixed; top:0; left: 0;">back -></button> --> 
-         <mat-icon class="close-button" (click)="drawer.close()">close</mat-icon>
-      </div>
-    </mat-drawer>
-  
-    <mat-toolbar class="fixed">
-        <span>Proto Software</span>
-        <button class="create-issue-btn" (click)="openDialog()">Create issue</button>
-        <span class="example-spacer"></span>
-        <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
-            <mat-icon>menu</mat-icon>
-          </button>
-      </mat-toolbar>
-  
-      <div class="container">
-        <router-outlet></router-outlet>
-      </div>
-  </mat-drawer-container>
+  <mat-toolbar class="fixed">
+    <span>Proto Software</span>
+
+    <mat-icon class="menu-button" [matMenuTriggerFor]="menu">add_box</mat-icon>
+    <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button> -->
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item class="create-issue-btn" (click)="openDialog()">
+        Create issue
+      </button>
+      <button mat-menu-item routerLink="/dashboard/profile">Profile</button>
+    </mat-menu>
+    <!-- <button class="create-issue-btn" (click)="openDialog()">Create issue</button> -->
+    <span class="example-spacer"></span>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+      (click)="drawer.toggle()"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</mat-drawer-container>

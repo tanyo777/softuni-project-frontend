@@ -19,10 +19,15 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatSelectModule } from "@angular/material/select";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from "@angular/material/input";
-import {MatTableModule} from '@angular/material/table';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ParticipantIconComponent } from './participant-icon/participant-icon.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { SystemComponent } from './system/system.component';
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from '../state/reducers/userReducer';
+import { TaskComponent } from './task/task.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 
 @NgModule({
@@ -35,6 +40,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     CreateprojectComponent,
     CreateissueComponent,
     ParticipantIconComponent,
+    SystemComponent,
+    TaskComponent,
 
   ],
   imports: [
@@ -53,7 +60,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     ReactiveFormsModule,
     MatTableModule,
     MatProgressBarModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatMenuModule,
+    StoreModule.forRoot({ userReducer: userReducer})
   ],
   exports: [
 
