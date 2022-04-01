@@ -1,9 +1,11 @@
-<div [@showHide]="loading ? 'hide' : 'show'" class="system-container">
+<div class="system-container">
     <div class="info">
         <h1>Welcome to Proto Software</h1>
-        <h4>Last visited on: ...</h4>
+        <h4>Account created on: {{ accountCreatedOn | date:'fullDate' }}</h4>
     </div>
     <div class="introduction">
         
     </div>
 </div>
+
+<!-- [@showHide]="loading ? 'hide' : 'show'" -->

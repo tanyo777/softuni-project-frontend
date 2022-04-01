@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   // check if component is loading data
   loading: boolean;
 
-  loginForm = new FormGroup({
+  loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
   })

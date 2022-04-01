@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
@@ -8,8 +9,12 @@ import { ProjectService } from 'src/app/services/project.service';
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.scss']
 })
-export class ProjectComponent implements OnInit {
+export class ProjectComponent implements OnInit, OnDestroy {
 
+
+  projectSubscription!: Subscription;
+
+  changeTasksViewToTales: boolean = false;
 
   loading: boolean;
 
@@ -38,7 +43,7 @@ export class ProjectComponent implements OnInit {
 
     // make request to get the project with Tasks model populations
 
-    this.projectService.getProjectById(this.projectId).subscribe({
+    this.projectSubscription = this.projectService.getProjectById(this.projectId).subscribe({
       next: (res: any) => {
         this.projectData = res.project;
         console.log(this.projectData);
@@ -46,6 +51,15 @@ export class ProjectComponent implements OnInit {
         this.titleService.setTitle(res.project.name);
       }
     })
+  }
+
+
+  changeTasksViewToTalesHandler(): void {
+    this.changeTasksViewToTales = !this.changeTasksViewToTales;
+  }
+
+  ngOnDestroy(): void {
+      this.projectSubscription.unsubscribe();
   }
 
 }

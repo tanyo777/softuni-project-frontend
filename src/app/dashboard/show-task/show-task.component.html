@@ -1,0 +1,80 @@
+<div class="task-info-container">
+  <form [formGroup]="editTaskForm" (ngSubmit)="editTask()">
+    <h2>Task: {{ task.summary }}</h2>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Task title</mat-label>
+      <input type="text" matInput formControlName="summary" />
+      <mat-error *ngIf="editTaskForm.controls['summary'].hasError('required')">
+        Title is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Issue Type</mat-label>
+      <input type="text" matInput formControlName="issueType" />
+      <mat-error
+        *ngIf="editTaskForm.controls['issueType'].hasError('required')"
+      >
+        Issue Type is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Priority</mat-label>
+      <input type="text" matInput formControlName="priority" />
+      <mat-error *ngIf="editTaskForm.controls['priority'].hasError('required')">
+        Task priority is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Status</mat-label>
+      <input type="text" matInput formControlName="status" />
+      <mat-error *ngIf="editTaskForm.controls['status'].hasError('required')">
+        Task status is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Description</mat-label>
+      <!-- <input type="text" matInput formControlName="description" /> -->
+      <textarea type="text" matInput formControlName="description"></textarea>
+      <mat-error
+        *ngIf="editTaskForm.controls['description'].hasError('required')"
+      >
+        Task description is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Created at</mat-label>
+      <input type="text" matInput formControlName="createdAt" />
+      <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>  -->
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Updated at</mat-label>
+      <input type="text" matInput formControlName="updatedAt" />
+      <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>  -->
+    </mat-form-field>
+
+    <div class="container-buttons">
+      <button mat-raised-button color="primary" class="btn" type="submit">
+        Edit
+      </button>
+      <button
+        type="button"
+        mat-raised-button
+        color="primary"
+        (click)="closeDialog()"
+        class="btn"
+      >
+        Close
+      </button>
+    </div>
+  </form>
+</div>

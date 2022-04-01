@@ -1,27 +1,36 @@
 <div class="project-container">
-    <!-- Progress Bar -->
-    <mat-progress-bar *ngIf="loading" mode="indeterminate" class="loading-indicator"></mat-progress-bar>
+  <!-- Progress Bar -->
+  <mat-progress-bar
+    *ngIf="loading"
+    mode="indeterminate"
+    class="loading-indicator"
+  ></mat-progress-bar>
 
-    <div *ngIf="!loading" class="header-component">
-        <div class="participants">
-            <h1>{{ projectData.name }} (Lead: {{ projectData.lead.fullName }} )</h1>
-            <app-participant-icon *ngFor="let participant of projectData.participants" [participant]="participant"></app-participant-icon>
-        </div>
+  <div *ngIf="!loading" class="header-component">
+    <div class="participants">
+      <h1>
+        {{ projectData.name }} (Lead: {{ projectData.lead.fullName }} )
+        <!-- Change tasks view -->
+        <button class="change-tasks-view" (click)="changeTasksViewToTalesHandler()" *ngIf="projectData?.tasks.length">{{ changeTasksViewToTales ? "Tales" : "Drag & Drop"}}</button>
+      </h1>
+      <app-participant-icon
+        *ngFor="let participant of projectData.participants"
+        [participant]="participant"
+      ></app-participant-icon>
     </div>
-    <hr>
-    <div class="tasks-container" *ngIf="projectData?.tasks.length && !loading">
-        <div *ngFor="let task of projectData?.tasks">
-            <app-task [task]="task"></app-task>
-        </div>
+  </div>
+  <hr />
+  <div
+    class="tasks-container"
+    *ngIf="projectData?.tasks.length && !loading && !changeTasksViewToTales"
+  >
+    <div *ngFor="let task of projectData?.tasks">
+      <app-task [task]="task"></app-task>
     </div>
+  </div>
+  <app-draganddrop *ngIf="changeTasksViewToTales && projectData?.tasks.length" [tasks]="projectData?.tasks"></app-draganddrop>
 
-    <div class="no-tasks" *ngIf="!projectData?.tasks.length && !loading">
-        <h2>There are no tasks for that project yet!</h2>
-    </div>
-
+  <div class="no-tasks" *ngIf="!projectData?.tasks.length && !loading">
+    <h2>There are no tasks for that project yet!</h2>
+  </div>
 </div>
-
-
-
-
-

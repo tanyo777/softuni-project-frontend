@@ -48,6 +48,21 @@
       @media  screen and (max-width: 570px) {
           flex-direction: column;
       }
+
+
+      .change-tasks-view {
+        border: none;
+        font-size: 17px;
+        background-color: #0052CC;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 5px;
+        &:hover {
+          background-color: #3f77cb;
+          transition-duration: 0.2s;
+        }
+      }
+
     }
 
   }

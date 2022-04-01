@@ -4,10 +4,12 @@ import { IUser } from "./user";
 export interface ITask {
     issueType: string;
     summary: string;
-    creator: IUser,
+    // creator: IUser,
     assignedTo: IUser,
     description: string;
     project: IProject
     priority: string;
     createdAt: string;
+    updatedAt: string;
+    status: string;
 }

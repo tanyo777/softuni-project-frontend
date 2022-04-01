@@ -4,6 +4,15 @@
     width: 45vw;
     cursor: default;
 
+
+    .create-issue-actions {
+        padding: 10px 0px 10px 0px;
+    
+        button[type=submit] {
+            margin-right: 20px;
+        }
+    }
+
     @media screen and (max-width: 750px) {
         width: 70vw;
     }
@@ -16,7 +25,7 @@
         width: 70%;
     }
     .textarea {
-        height: 25vh;
+        height: 20vh;
         width: 100%;
     }
 

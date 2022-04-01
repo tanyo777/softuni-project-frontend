@@ -11,6 +11,8 @@ export interface IUser {
     tasks: ITask[];
     __v: number;
     _id: string;
+    createdAt: string;
+    updatedAt: string;
 }
 
 

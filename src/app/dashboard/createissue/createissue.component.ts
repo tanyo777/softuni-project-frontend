@@ -4,18 +4,11 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TaskService } from 'src/app/services/task.service';
 import { userSelector} from "../../state/selectors/user";
-
-interface IIssue {
-  type: string;
-  value: string;
-  icon: string;
-}
-
-
-interface IPriority {
-  type: string;
-  value: string;
-}
+import { MatDialog } from '@angular/material/dialog';
+import { IIssue, IPriority } from 'src/app/interfaces/issue';
+import { Priority } from 'src/app/interfaces/enumPriority';
+import { UserService } from 'src/app/services/user.service';
+import { IUser } from 'src/app/interfaces/user';
 
 
 @Component({
@@ -57,7 +50,9 @@ export class CreateissueComponent implements OnInit {
   constructor(
     private store: Store, 
     private taskService: TaskService,
-    private router: Router
+    private router: Router,
+    public dialog: MatDialog,
+    private userService: UserService
   ) {
     this.issueTypes = [
       {type: "Bug", value: "Bug", icon: "<mat-icon>bug_report</mat-icon>"},
@@ -72,21 +67,21 @@ export class CreateissueComponent implements OnInit {
 
 
     this.priorities = [
-      { type: "Highest", value: "Highest"},
-      { type: "Medium", value: "Medium"},
-      { type: "High", value: "High"},
-      { type: "Low", value: "Low"},
-      { type: "Lowest", value: "Lowest"}
+      { type: "Highest", value: Priority.Highest},
+      { type: "Medium", value: Priority.Medium},
+      { type: "High", value: Priority.High},
+      { type: "Low", value: Priority.Low},
+      { type: "Lowest", value: Priority.Lowest}
     ];
   }
 
   ngOnInit(): void {
-    this.store.select(userSelector).subscribe({
-      next: (res: any) => {
-        console.log(res);
-        this.projects = res.projects;
+    this.userService.getUser().subscribe({
+      next: (user: any) => {
+        console.log(user);
+        this.projects = user.user.projects;
       }
-    });
+    })
   }
 
 
@@ -95,10 +90,15 @@ export class CreateissueComponent implements OnInit {
       const payload = this.createIssueForm.value;
       this.taskService.postTask(payload).subscribe((res: any) => {
         if(res.msg) {
+          this.dialog.closeAll();
           this.router.navigate(['/dashboard/projects']);
         }
       });
     }
+  }
+
+  cancelCreateIssueModal(): void {
+    this.dialog.closeAll();
   }
 
 }

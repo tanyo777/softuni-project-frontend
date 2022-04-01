@@ -23,14 +23,15 @@
     <span>Proto Software</span>
 
     <mat-icon class="menu-button" [matMenuTriggerFor]="menu">add_box</mat-icon>
-    <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button> -->
     <mat-menu #menu="matMenu">
       <button mat-menu-item class="create-issue-btn" (click)="openDialog()">
         Create issue
       </button>
+      <button mat-menu-item class="create-issue-btn" routerLink="/dashboard/projects">
+        Projects
+      </button>
       <button mat-menu-item routerLink="/dashboard/profile">Profile</button>
     </mat-menu>
-    <!-- <button class="create-issue-btn" (click)="openDialog()">Create issue</button> -->
     <span class="example-spacer"></span>
     <button
       mat-icon-button

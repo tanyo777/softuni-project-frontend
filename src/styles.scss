@@ -1,7 +1,67 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 /* Importing Bootstrap SCSS file. */
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+
+
+.task {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 2px 1px 4px gray;
+    padding: 10px;
+    cursor: pointer;
+    &:hover {
+        background-color: rgb(237, 235, 235);
+    }
+}
+h4 {
+  padding: 6px;
+  span {
+    padding: 6px;
+    width: 250px;
+  }
+}
+  
+
+.highest {
+  background-color: rgb(206, 66, 41);
+  border-radius: 5px;
+  color: white;
+}
+
+.high {
+  background-color: rgb(211, 111, 93);
+  border-radius: 5px;
+  color: white;
+  text-shadow: 1px 1px black;
+}
+
+.medium {
+  background-color: #ffb039;
+  border-radius: 5px;
+  color: white;
+  text-shadow: 1px 1px black;
+}
+
+.low {
+  background-color: #10823b;
+  border-radius: 5px;
+  color: white;
+  text-shadow: 1px 1px black;
+}
+
+.lowest {
+  background-color: #004e25;
+  border-radius: 5px;
+  color: white;
+  text-shadow: 1px 1px black;
+}

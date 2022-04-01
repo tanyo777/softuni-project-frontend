@@ -28,7 +28,9 @@ import { StoreModule } from '@ngrx/store';
 import { userReducer } from '../state/reducers/userReducer';
 import { TaskComponent } from './task/task.component';
 import { MatMenuModule } from '@angular/material/menu';
-
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { DraganddropComponent } from './draganddrop/draganddrop.component';
+import { ShowTaskComponent } from './show-task/show-task.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ParticipantIconComponent,
     SystemComponent,
     TaskComponent,
+    DraganddropComponent,
+    ShowTaskComponent,
 
   ],
   imports: [
@@ -62,6 +66,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatProgressBarModule,
     MatTooltipModule,
     MatMenuModule,
+    DragDropModule,
     StoreModule.forRoot({ userReducer: userReducer})
   ],
   exports: [

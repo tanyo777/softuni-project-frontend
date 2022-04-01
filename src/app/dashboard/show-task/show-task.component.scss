@@ -1,0 +1,49 @@
+.task-info-container {
+  form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 70vw;
+    height: 85vh;
+    overflow-y: auto;
+    max-height: 85vh;
+
+    mat-form-field {
+      width: 70%;
+
+      textarea {
+        height: 100px;
+      }
+
+      @media screen and (max-width: 600px) {
+        width: 100%;
+      }
+    }
+
+    h2 {
+      padding: 10px;
+      width: 70%;
+
+      @media screen and (max-width: 600px) {
+        width: 100%;
+      }
+    }
+  }
+
+  .container-buttons {
+    padding: 10px;
+    width: 70%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    @media screen and (max-width: 600px) {
+      width: 100%;
+    }
+    .btn {
+      margin-left: 30px;
+      width: 200px;
+      color: white;
+    }
+  }
+}

@@ -1,7 +1,18 @@
-<div class="task">
-    <h2> Issue Type: {{ task.issueType}}</h2>
-    <h4>Summary: {{ task.summary }}</h4>
-    <h4>Priority: {{ task.priority }}</h4>
-    <h4>Description: {{ task.description }}</h4>
-    <p>Created at: {{ task.createdAt }}</p>
+<div class="task" (click)="openDialog()">
+  <h2>Issue Type: {{ task.issueType }}</h2>
+  <h4>Summary: {{ task.summary }}</h4>
+  <h4>
+    Priority:
+    <span
+      [ngClass]="{
+        highest: task.priority == 'Highest',
+        high: task.priority == 'High',
+        medium: task.priority == 'Medium',
+        low: task.priority == 'Low',
+        lowest: task.priority == 'Lowest'
+      }"
+    >
+      {{ task.priority }}
+    </span>
+  </h4>
 </div>

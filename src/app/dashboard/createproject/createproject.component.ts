@@ -15,7 +15,7 @@ export class CreateprojectComponent implements OnInit {
 
   loading: boolean = false;
 
-  newProjectForm = new FormGroup({
+  newProjectForm: FormGroup = new FormGroup({
     name: new FormControl("", [Validators.required]),
     key: new FormControl("", [Validators.required]),
     projectType: new FormControl("", [Validators.required]),

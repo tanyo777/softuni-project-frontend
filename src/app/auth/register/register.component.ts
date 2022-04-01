@@ -17,7 +17,7 @@ import { Title } from '@angular/platform-browser';
 export class RegisterComponent implements OnInit {
 
 
-  registerForm = new FormGroup({
+  registerForm: FormGroup = new FormGroup({
     fullName: new FormControl("", [Validators.required]),
     username: new FormControl("", [Validators.required]),
     email: new FormControl("", [Validators.required, Validators.email]),
