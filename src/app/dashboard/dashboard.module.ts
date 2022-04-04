@@ -31,6 +31,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import {DragDropModule} from '@angular/cdk/drag-drop';
 import { DraganddropComponent } from './draganddrop/draganddrop.component';
 import { ShowTaskComponent } from './show-task/show-task.component';
+import { InnerSectionComponent } from './profile/inner-section/inner-section.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ShowTaskComponent } from './show-task/show-task.component';
     TaskComponent,
     DraganddropComponent,
     ShowTaskComponent,
+    InnerSectionComponent,
 
   ],
   imports: [

@@ -4,7 +4,11 @@
 
 export const environment = {
   production: false,
-  baseUrl: "http://localhost:7070"
+
+  // dev backend url
+  baseUrl: "http://localhost:7070",
+  // prod 
+  // baseUrl: "https://softuni-backend.herokuapp.com"
 };
 
 /*

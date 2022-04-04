@@ -1,3 +1,11 @@
 <div class="container-image">
-    <img src="../../../assets/user.JPG" alt="profile-pic">
+
+    <!-- Show span if there is no uploaded user image -->
+  <span>
+    {{ (user | async)!.fullName?.[0] }}
+  </span>
+
+
+  <!-- Show image if there is uploaded user image -->
+  <!-- <img src="../../../assets/user.JPG" alt="profile-pic"> -->
 </div>

@@ -9,7 +9,6 @@
         </mat-option>
       </mat-select>
 
-      <!-- Display error message -->
       <mat-error
         *ngIf="createIssueForm.controls['project'].hasError('required')"
         >Project key is required!</mat-error
@@ -78,7 +77,14 @@
 
     <div class="create-issue-actions">
       <button mat-raised-button color="primary" type="submit">Create</button>
-      <button mat-raised-button color="primary" type="button" (click)="cancelCreateIssueModal()">Cancel</button>
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        (click)="cancelCreateIssueModal()"
+      >
+        Cancel
+      </button>
     </div>
   </form>
 </div>

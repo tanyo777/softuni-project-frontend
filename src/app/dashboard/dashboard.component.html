@@ -6,12 +6,18 @@
     <h3><mat-icon> email</mat-icon> {{ user?.email }}</h3>
 
     <div class="links">
-      <a routerLink="/dashboard" (click)="drawer.close()">Dashboard</a>
-      <a routerLink="/dashboard/projects" (click)="drawer.close()">Projects</a>
-      <a routerLink="/dashboard/create-project" (click)="drawer.close()"
-        >Create project</a
+      <a routerLink="/dashboard" (click)="drawer.close()"
+        >Dashboard <mat-icon>dashboard</mat-icon></a
       >
-      <a routerLink="/dashboard/profile" (click)="drawer.close()">Profile</a>
+      <a routerLink="/dashboard/projects" (click)="drawer.close()"
+        >Projects <mat-icon>perm_media</mat-icon></a
+      >
+      <a routerLink="/dashboard/create-project" (click)="drawer.close()"
+        >Create project <mat-icon>note_add</mat-icon></a
+      >
+      <a routerLink="/dashboard/profile" (click)="drawer.close()"
+        >Profile <mat-icon>perm_identity</mat-icon></a
+      >
       <button (click)="logoutUser()">
         Logout<mat-icon>exit_to_app</mat-icon>
       </button>
@@ -24,10 +30,14 @@
 
     <mat-icon class="menu-button" [matMenuTriggerFor]="menu">add_box</mat-icon>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item class="create-issue-btn" (click)="openDialog()">
+      <button mat-menu-item class="create-issue-btn" (click)="openDialog()" [disabled]="!user?.projects?.length">
         Create issue
       </button>
-      <button mat-menu-item class="create-issue-btn" routerLink="/dashboard/projects">
+      <button
+        mat-menu-item
+        class="create-issue-btn"
+        routerLink="/dashboard/projects"
+      >
         Projects
       </button>
       <button mat-menu-item routerLink="/dashboard/profile">Profile</button>

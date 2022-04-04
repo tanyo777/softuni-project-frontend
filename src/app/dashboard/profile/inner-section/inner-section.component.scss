@@ -1,0 +1,14 @@
+.section-item {
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 1px 2px 5px gray;
+
+    h3 {
+        font-weight: bold;
+        color: gray;
+    }
+
+    p, h3 {
+        padding: 5px;
+    }
+}

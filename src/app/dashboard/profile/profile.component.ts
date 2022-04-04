@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import { Component, OnInit } from '@angular/core';
 
 
 @Component({
@@ -8,10 +7,6 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
- 
-
-
 
   constructor() { }
 
