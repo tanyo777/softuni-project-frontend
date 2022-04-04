@@ -37,6 +37,10 @@ export class RegisterComponent implements OnInit {
     this._snackBar.open(message, action);
   }
 
+  closeSnackBar() {
+    this._snackBar.dismiss();
+  }
+
   constructor(
     private httpClient: HttpClient,
     private _snackBar: MatSnackBar,
@@ -64,6 +68,9 @@ export class RegisterComponent implements OnInit {
               // if error show snackbar with the error message
               const error = response.error;
               this.openSnackBar(error, "close");
+              setTimeout(() => {
+                this.closeSnackBar();
+              },1500);
             } else {
               // get jwt token from the server
               const token = response.token.token;

@@ -46,6 +46,10 @@ export class LoginComponent implements OnInit {
     this._snackBar.open(message, action);
   }
 
+  closeSnackBar() {
+    this._snackBar.dismiss();
+  }
+
   submitLoginForm() {
     if(this.loginForm.valid) {
       this.loading = true;
@@ -62,6 +66,9 @@ export class LoginComponent implements OnInit {
             // if error show snackbar with the error message
             const error = res.error;
             this.openSnackBar(error, "close");
+            setTimeout(() => {
+              this.closeSnackBar()
+            }, 1500)
           } else {
             // get jwt token from the server
             const token = res.token;
