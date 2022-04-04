@@ -11,4 +11,4 @@ app.get('/*', function(req,res) {
 res.sendFile(path.join(__dirname+'/dist/frontend/index.html'));
 });
 
-app.listen(4200);
+app.listen(3030);
