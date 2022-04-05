@@ -75,10 +75,12 @@ export class RegisterComponent implements OnInit {
               // get jwt token from the server
               const token = response.token.token;
 
-              // save it in a cookie and localstorage
               // set expiry date
-              this.cookieService.put('token', token);
-              localStorage.setItem("token", token);
+              const expiryDate: Date = new Date();
+              expiryDate.setHours(expiryDate.getHours() + 24)
+
+              // save cookie
+              this.cookieService.put('token', token, { expires: expiryDate});
 
               // navigate to dashboard
               this.router.navigate(['/dashboard']);

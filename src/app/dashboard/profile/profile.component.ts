@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { IUser } from 'src/app/interfaces/user';
+import { UserService } from 'src/app/services/user.service';
+import { populateUser } from 'src/app/state/actions/user';
 
 
 @Component({
@@ -8,10 +12,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  loading: boolean = false;
+
+  user!: IUser;
+
+  constructor(
+    private userService: UserService,
+    private store: Store
+    ) { }
 
   ngOnInit(): void {
+    this.loading = true;
+    this.userService.getUser().subscribe({
+      next: (user: any) => {
+        this.user = user.user;
+        this.store.dispatch(populateUser({ user: this.user }))
+        this.loading = false;
+      },
+      error: (err) => {
+        this.loading = false;
+      }
+    })
   }
-
-
 }

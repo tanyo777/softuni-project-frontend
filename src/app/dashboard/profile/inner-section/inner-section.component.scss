@@ -1,14 +1,26 @@
 .section-item {
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 1px 2px 5px gray;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 1px 2px 5px gray;
 
-    h3 {
-        font-weight: bold;
-        color: gray;
+  p,
+  h3 {
+    padding: 5px;
+  }
+  h3 {
+    font-weight: bold;
+    color: gray;
+    button {
+      border: none;
+      padding: 2px 16px;
+      background-color: #253660;
+      margin-left: 10px;
+      color: white;
+      border-radius: 5px;
+      &:hover {
+        background-color: #576a99;
+        transition-duration: 0.2s;
+      }
     }
-
-    p, h3 {
-        padding: 5px;
-    }
+  }
 }

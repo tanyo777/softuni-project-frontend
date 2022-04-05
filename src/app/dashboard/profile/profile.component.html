@@ -1,10 +1,11 @@
-<div class="profile-container">
+<div class="profile-container" *ngIf="!loading">
   <div class="profile">
+    <app-profilepic></app-profilepic>
     <h2>Profile</h2>
     <div class="inner">
       <app-inner-section
-        [header]="'Email Address'"
-        [sectionValue]="'tanyo.nikolov00@gmail.com'"
+        [header]="'Username'"
+        [sectionValue]="user?.username"
       ></app-inner-section>
     </div>
   </div>
@@ -13,8 +14,8 @@
     <h2>About you</h2>
     <div class="inner">
       <app-inner-section
-        [header]="'Email Address'"
-        [sectionValue]="'tanyo.nikolov00@gmail.com'"
+        [header]="'Account Name'"
+        [sectionValue]="user?.fullName"
       ></app-inner-section>
     </div>
   </div>
@@ -24,8 +25,14 @@
     <div class="inner">
       <app-inner-section
         [header]="'Email Address'"
-        [sectionValue]="'tanyo.nikolov00@gmail.com'"
+        [sectionValue]="user?.email"
       ></app-inner-section>
     </div>
   </div>
 </div>
+
+
+<h2 
+style="margin-top: 100px;"
+*ngIf="loading"
+>Loading...</h2>

@@ -32,6 +32,7 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { DraganddropComponent } from './draganddrop/draganddrop.component';
 import { ShowTaskComponent } from './show-task/show-task.component';
 import { InnerSectionComponent } from './profile/inner-section/inner-section.component';
+import { EditComponent } from './profile/edit/edit.component';
 
 @NgModule({
   declarations: [
@@ -48,6 +49,7 @@ import { InnerSectionComponent } from './profile/inner-section/inner-section.com
     DraganddropComponent,
     ShowTaskComponent,
     InnerSectionComponent,
+    EditComponent,
 
   ],
   imports: [

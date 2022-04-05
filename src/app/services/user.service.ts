@@ -23,6 +23,10 @@ export class UserService {
     this.router.navigate(['/login']);
   }
 
+  editUserProperty() {
+
+  }
+
   getUser(): Observable<IUser> {
     return this.httpClient.get<IUser>(`${environment.baseUrl}/dashboard`);
   }
