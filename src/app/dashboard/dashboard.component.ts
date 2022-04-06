@@ -41,13 +41,6 @@ export class DashboardComponent implements OnInit {
 
 
 
-  openDialog() {
-    const dialogRef = this.dialog.open(CreateissueComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
 
   logoutUser() {
     this.userService.logoutUser();

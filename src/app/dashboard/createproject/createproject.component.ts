@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { switchMap } from 'rxjs';
 import { ProjectService } from 'src/app/services/project.service';
-
+import { UserService } from 'src/app/services/user.service';
+import { populateUser } from 'src/app/state/actions/user';
 
 @Component({
   selector: 'app-createproject',
@@ -26,7 +29,9 @@ export class CreateprojectComponent implements OnInit {
   constructor(
     private titleService: Title, 
     private projectsService: ProjectService,
-    private router: Router
+    private router: Router,
+    private userService: UserService,
+    private store: Store
     ) { }
 
   ngOnInit(): void {
@@ -38,8 +43,14 @@ export class CreateprojectComponent implements OnInit {
     if(this.newProjectForm.valid) {
       this.loading = true;
 
-      this.projectsService.postProject(this.newProjectForm.value).subscribe({
-        next: (res) => {
+      this.projectsService.postProject(this.newProjectForm.value).pipe(
+        switchMap(data => this.userService.getUser())
+      ).subscribe({
+        next: (res: any) => {
+          const user = res.user;
+
+          this.store.dispatch(populateUser({ user }));
+
           this.loading = false;
           this.router.navigate(['/dashboard/projects']);
         },

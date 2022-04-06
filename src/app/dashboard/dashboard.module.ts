@@ -33,6 +33,7 @@ import { DraganddropComponent } from './draganddrop/draganddrop.component';
 import { ShowTaskComponent } from './show-task/show-task.component';
 import { InnerSectionComponent } from './profile/inner-section/inner-section.component';
 import { EditComponent } from './profile/edit/edit.component';
+import { IssuebtnComponent } from './issuebtn/issuebtn.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { EditComponent } from './profile/edit/edit.component';
     ShowTaskComponent,
     InnerSectionComponent,
     EditComponent,
+    IssuebtnComponent,
 
   ],
   imports: [

@@ -30,9 +30,9 @@
 
     <mat-icon class="menu-button" [matMenuTriggerFor]="menu">add_box</mat-icon>
     <mat-menu #menu="matMenu">
-      <button mat-menu-item class="create-issue-btn" (click)="openDialog()" [disabled]="!user?.projects?.length">
-        Create issue
-      </button>
+     
+      <app-issuebtn></app-issuebtn>
+      
       <button
         mat-menu-item
         class="create-issue-btn"
