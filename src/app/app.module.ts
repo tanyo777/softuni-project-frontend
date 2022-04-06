@@ -28,9 +28,9 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
 
 import { CookieModule } from 'ngx-cookie';
 import { StoreModule } from '@ngrx/store';
-import { userReducer } from './state/reducers/userReducer';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -58,7 +58,6 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     MatSnackBarModule,
     CookieModule.forRoot(),
-    StoreModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,
       // Register the ServiceWorker as soon as the application is stable

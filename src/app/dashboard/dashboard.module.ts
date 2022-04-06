@@ -25,7 +25,7 @@ import { ParticipantIconComponent } from './participant-icon/participant-icon.co
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SystemComponent } from './system/system.component';
 import { StoreModule } from '@ngrx/store';
-import { userReducer } from '../state/reducers/userReducer';
+import { userReducer } from '../+store/reducers/userReducer';
 import { TaskComponent } from './task/task.component';
 import { MatMenuModule } from '@angular/material/menu';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -34,6 +34,8 @@ import { ShowTaskComponent } from './show-task/show-task.component';
 import { InnerSectionComponent } from './profile/inner-section/inner-section.component';
 import { EditComponent } from './profile/edit/edit.component';
 import { IssuebtnComponent } from './issuebtn/issuebtn.component';
+import { MatDatepickerModule } from "@angular/material/datepicker";
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -73,6 +75,8 @@ import { IssuebtnComponent } from './issuebtn/issuebtn.component';
     MatTooltipModule,
     MatMenuModule,
     DragDropModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     StoreModule.forRoot({ userReducer: userReducer})
   ],
   exports: [

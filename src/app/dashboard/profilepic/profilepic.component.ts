@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { IUser } from 'src/app/interfaces/user';
-import { userSelector } from 'src/app/state/selectors/user';
+import { userSelector } from 'src/app/+store/selectors/user';
 
 @Component({
   selector: 'app-profilepic',

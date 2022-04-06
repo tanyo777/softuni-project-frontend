@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Store } from '@ngrx/store';
-import { userSelector } from 'src/app/state/selectors/user';
+import { userSelector } from 'src/app/+store/selectors/user';
 import { CreateissueComponent } from '../createissue/createissue.component';
 
 @Component({
@@ -22,7 +22,7 @@ export class IssuebtnComponent implements OnInit {
   ngOnInit(): void {
     this.store.select(userSelector).subscribe({
       next: (res) => {
-        this.projectsLength = res.projects.length;
+        this.projectsLength = res.projects?.length;
       }
     })
   }

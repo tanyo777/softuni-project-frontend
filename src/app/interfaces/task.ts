@@ -2,6 +2,7 @@ import { IProject } from "./project";
 import { IUser } from "./user";
 
 export interface ITask {
+    _id: string;
     issueType: string;
     summary: string;
     // creator: IUser,

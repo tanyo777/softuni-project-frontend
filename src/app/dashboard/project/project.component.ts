@@ -46,7 +46,6 @@ export class ProjectComponent implements OnInit, OnDestroy {
     this.projectSubscription = this.projectService.getProjectById(this.projectId).subscribe({
       next: (res: any) => {
         this.projectData = res.project;
-        console.log(this.projectData);
         this.loading = false;
         this.titleService.setTitle(res.project.name);
       }

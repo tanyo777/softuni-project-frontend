@@ -6,7 +6,7 @@ import { Store } from '@ngrx/store';
 import { switchMap } from 'rxjs';
 import { ProjectService } from 'src/app/services/project.service';
 import { UserService } from 'src/app/services/user.service';
-import { populateUser } from 'src/app/state/actions/user';
+import { populateUser } from 'src/app/+store/actions/user';
 
 @Component({
   selector: 'app-createproject',

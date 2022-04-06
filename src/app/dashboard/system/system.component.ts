@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 // import { state, transition, animate, trigger, style } from "@angular/animations";
 import { Store } from '@ngrx/store';
-import { userSelector } from 'src/app/state/selectors/user';
+import { userSelector } from 'src/app/+store/selectors/user';
 import { IUser } from 'src/app/interfaces/user';
 
 @Component({

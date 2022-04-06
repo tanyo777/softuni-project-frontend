@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TaskService } from 'src/app/services/task.service';
-import { userSelector} from "../../state/selectors/user";
+import { userSelector} from "../../+store/selectors/user";
 import { MatDialog } from '@angular/material/dialog';
 import { IIssue, IPriority } from 'src/app/interfaces/issue';
 import { Priority } from 'src/app/interfaces/enumPriority';

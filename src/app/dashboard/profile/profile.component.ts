@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IUser } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/services/user.service';
-import { populateUser } from 'src/app/state/actions/user';
+import { populateUser } from 'src/app/+store/actions/user';
 
 
 @Component({
