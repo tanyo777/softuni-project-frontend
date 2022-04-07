@@ -24,8 +24,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ParticipantIconComponent } from './participant-icon/participant-icon.component';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { SystemComponent } from './system/system.component';
-import { StoreModule } from '@ngrx/store';
-import { userReducer } from '../+store/reducers/userReducer';
+
 import { TaskComponent } from './task/task.component';
 import { MatMenuModule } from '@angular/material/menu';
 import {DragDropModule} from '@angular/cdk/drag-drop';
@@ -36,6 +35,7 @@ import { EditComponent } from './profile/edit/edit.component';
 import { IssuebtnComponent } from './issuebtn/issuebtn.component';
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from '@angular/material/core';
+
 
 @NgModule({
   declarations: [
@@ -77,7 +77,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     DragDropModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    StoreModule.forRoot({ userReducer: userReducer})
+
   ],
   exports: [
 

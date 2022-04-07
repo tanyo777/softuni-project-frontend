@@ -4,19 +4,15 @@ import { ITask } from '../interfaces/task';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TaskService {
-
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient) {}
 
   postTask(payload: ITask): Observable<ITask> {
     return this.http.post<ITask>(`${environment.baseUrl}/tasks`, payload);
   }
-
 
   getTaskById(id: string): Observable<ITask> {
     return this.http.get<ITask>(`${environment.baseUrl}/tasks/${id}`);
@@ -26,4 +22,10 @@ export class TaskService {
     return this.http.delete(`${environment.baseUrl}/tasks/${id}`);
   }
 
+  updateTaskStatus(id: string, status: string): Observable<object> {
+    return this.http.post(`${environment.baseUrl}/task/status`, {
+      id,
+      status,
+    });
+  }
 }

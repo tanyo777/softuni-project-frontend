@@ -7,7 +7,7 @@
         [cdkDropListData]="todo"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let task of todo" cdkDrag (click)="showEditTask(task)">
+        <div class="example-box" *ngFor="let task of todo" cdkDrag (click)="showEditTask(task)" [id]="task._id">
           <!-- Tasks marked as To do -->
           <h4>{{task.summary}}</h4>
           <h4>
@@ -36,7 +36,7 @@
         [cdkDropListData]="inProgress"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let task of inProgress" cdkDrag (click)="showEditTask(task)">
+        <div class="example-box" *ngFor="let task of inProgress" cdkDrag (click)="showEditTask(task)" [id]="task._id">
 
           <!-- Tasks marked as In Progress -->
           <h4>{{task.summary}}</h4>
@@ -66,7 +66,7 @@
         [cdkDropListData]="done"
         class="example-list"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let task of done" cdkDrag (click)="showEditTask(task)">
+        <div class="example-box" *ngFor="let task of done" cdkDrag (click)="showEditTask(task)" [id]="task._id">
 
           <!-- Tasks marked as DONE -->
           <h4>{{task.summary}}</h4>
@@ -88,3 +88,5 @@
       </div>
     </div>
   </div>
+
+ 

@@ -9,6 +9,8 @@
       </mat-error>
     </mat-form-field>
 
+
+    <!-- Issue type -->
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Issue Type</mat-label>
       <input type="text" matInput formControlName="issueType" />
@@ -18,6 +20,22 @@
         Issue Type is <strong>required</strong>
       </mat-error>
     </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Issue Type</mat-label>
+      <mat-select formControlName="issueType">
+        <mat-option *ngFor="let type of dropdowns.issueTypes" [value]="type">
+          {{type.value}}
+        </mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="editTaskForm.controls['issueType'].hasError('required') && editTaskForm.controls['issueType'].touched"
+      >
+        Issue Type is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <!-- Priority -->
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Priority</mat-label>

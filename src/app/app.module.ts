@@ -25,11 +25,15 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { NotfoundComponent } from './auth/notfound/notfound.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-
 import { CookieModule } from 'ngx-cookie';
-import { StoreModule } from '@ngrx/store';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { projectReducer } from './+store/reducers/projectReducer';
+import { userReducer } from './+store/reducers/userReducer';
+
+import { StoreModule } from '@ngrx/store';
 import { environment } from '../environments/environment';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { dropdownsReducer } from './+store/reducers/dropdownsReducer';
 
 
 @NgModule({
@@ -63,8 +67,13 @@ import { environment } from '../environments/environment';
       // Register the ServiceWorker as soon as the application is stable
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
-    })
-    // StoreModule.forRoot({ userReducer: userReducer })
+    }),
+    StoreModule.forRoot({ 
+      userReducer: userReducer, 
+      projectReducer: projectReducer,
+      dropdownsReducer: dropdownsReducer 
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}

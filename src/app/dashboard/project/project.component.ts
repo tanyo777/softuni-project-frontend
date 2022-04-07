@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
+import { setLastViewedProject } from 'src/app/+store/actions/projects';
+import { projectSelector } from 'src/app/+store/selectors/project';
 import { ProjectService } from 'src/app/services/project.service';
 
 @Component({
@@ -14,7 +17,6 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
   projectSubscription!: Subscription;
 
-  changeTasksViewToTales: boolean = false;
 
   loading: boolean;
 
@@ -25,7 +27,8 @@ export class ProjectComponent implements OnInit, OnDestroy {
   constructor(
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private store: Store
   ) { 
     this.projectId = "";
     this.loading = false;
@@ -45,17 +48,20 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
     this.projectSubscription = this.projectService.getProjectById(this.projectId).subscribe({
       next: (res: any) => {
-        this.projectData = res.project;
         this.loading = false;
         this.titleService.setTitle(res.project.name);
+        this.store.dispatch(setLastViewedProject(res.project));
+        this.store.select(projectSelector).subscribe({
+          next: (res) => {
+            this.projectData = res;
+            console.log("store", this.projectData);
+          }
+        })
       }
     })
   }
 
 
-  changeTasksViewToTalesHandler(): void {
-    this.changeTasksViewToTales = !this.changeTasksViewToTales;
-  }
 
   ngOnDestroy(): void {
       this.projectSubscription.unsubscribe();

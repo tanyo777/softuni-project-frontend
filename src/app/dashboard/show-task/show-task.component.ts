@@ -3,8 +3,9 @@ import { MatDialog } from '@angular/material/dialog';
 import { ITask } from 'src/app/interfaces/task';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { TaskService } from 'src/app/services/task.service';
-import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { deleteTask } from 'src/app/+store/actions/projects';
+import { dropdownsSelector } from 'src/app/+store/selectors/dropdowns';
 
 
 @Component({
@@ -14,6 +15,9 @@ import { Store } from '@ngrx/store';
 })
 export class ShowTaskComponent implements OnInit {
   task!: ITask;
+
+
+  dropdowns!: {issueTypes: [{type: string, value: string}]};
 
   editTaskForm: FormGroup = new FormGroup({
     summary: new FormControl('', [Validators.required]),
@@ -28,11 +32,16 @@ export class ShowTaskComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private taskService: TaskService,
-    private router: Router,
     private store: Store
   ) {}
 
   ngOnInit(): void {
+    this.store.select(dropdownsSelector).subscribe({
+      next: (dropdowns) => {
+        this.dropdowns = dropdowns;
+        console.log(dropdowns);
+      }
+    });
     //  set controls values to match task props
     this.editTaskForm.controls['summary'].setValue(this.task.summary);
     this.editTaskForm.controls['issueType'].setValue(this.task.issueType);
@@ -41,6 +50,8 @@ export class ShowTaskComponent implements OnInit {
     this.editTaskForm.controls['description'].setValue(this.task.description);
     this.editTaskForm.controls['createdAt'].setValue(this.task.createdAt);
     this.editTaskForm.controls['updatedAt'].setValue(this.task.updatedAt);
+
+    
   }
 
   closeDialog(): void {
@@ -52,8 +63,9 @@ export class ShowTaskComponent implements OnInit {
   deleteTaskHandler(id: string): void {
     this.taskService.deleteTaskById(id).subscribe({
       next: (res) => {
+        this.store.dispatch(deleteTask({ id }));
+        
         this.dialog.closeAll();
-        this.router.navigate([`/dashboard/projects`]);
       },
       error: (error: Error) => {
         console.log(error.message);

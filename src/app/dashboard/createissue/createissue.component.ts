@@ -3,12 +3,13 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { TaskService } from 'src/app/services/task.service';
-import { userSelector} from "../../+store/selectors/user";
 import { MatDialog } from '@angular/material/dialog';
 import { IIssue, IPriority } from 'src/app/interfaces/issue';
 import { Priority } from 'src/app/interfaces/enumPriority';
 import { UserService } from 'src/app/services/user.service';
-import { IUser } from 'src/app/interfaces/user';
+import { projectSelector } from 'src/app/+store/selectors/project';
+import { IProject } from 'src/app/interfaces/project';
+import { addIssueToSelectedProject } from 'src/app/+store/actions/projects';
 
 
 @Component({
@@ -46,6 +47,7 @@ export class CreateissueComponent implements OnInit {
 
   projects: any[] = [];
 
+  selectedProject!: IProject;
 
   constructor(
     private store: Store, 
@@ -82,6 +84,12 @@ export class CreateissueComponent implements OnInit {
         this.projects = user.user.projects;
       }
     })
+
+    this.store.select(projectSelector).subscribe({
+      next: (res: any) => {
+        this.selectedProject = res._id;
+      }
+    });
   }
 
 
@@ -90,8 +98,12 @@ export class CreateissueComponent implements OnInit {
       const payload = this.createIssueForm.value;
       this.taskService.postTask(payload).subscribe((res: any) => {
         if(res.msg) {
+          const projectId = res.msg.project;
+          if(this.selectedProject === projectId) {
+            this.store.dispatch(addIssueToSelectedProject(res.msg));
+          }
           this.dialog.closeAll();
-          this.router.navigate(['/dashboard/projects']);
+          // this.router.navigate(['/dashboard/projects']);
         }
       });
     }

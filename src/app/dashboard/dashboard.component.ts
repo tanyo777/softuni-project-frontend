@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Title } from '@angular/platform-browser';
 import { Store } from '@ngrx/store';
 import { populateUser } from '../+store/actions/user';
+import { populateDropdowns } from '../+store/actions/dropdowns';
 import { Priority } from '../interfaces/enumPriority';
 
 @Component({
@@ -29,55 +30,55 @@ export class DashboardComponent implements OnInit {
         if (res.user) {
           this.user = res.user;
           this.store.dispatch(populateUser({ user: res.user }));
-          // this.store.dispatch(
-          //   populateTaskDropdowns({
-          //     priorities: [
-          //       { type: 'Highest', value: Priority.Highest },
-          //       { type: 'Medium', value: Priority.Medium },
-          //       { type: 'High', value: Priority.High },
-          //       { type: 'Low', value: Priority.Low },
-          //       { type: 'Lowest', value: Priority.Lowest },
-          //     ],
-          //     statuses: ['To do', 'In Progress', 'Done'],
-          //     issueTypes: [
-          //       {
-          //         type: 'Bug',
-          //         value: 'Bug',
-          //         icon: '<mat-icon>bug_report</mat-icon>',
-          //       },
-          //       {
-          //         type: 'Task',
-          //         value: 'Task',
-          //         icon: '<mat-icon>bug_report</mat-icon>',
-          //       },
-          //       {
-          //         type: 'Story',
-          //         value: 'Story',
-          //         icon: '<mat-icon>bug_report</mat-icon>',
-          //       },
-          //       {
-          //         type: 'Epic',
-          //         value: 'Epic',
-          //         icon: '<mat-icon>bug_report</mat-icon>',
-          //       },
-          //       {
-          //         type: 'Test Case',
-          //         value: 'Test Case',
-          //         icon: '<mat-icon>bug_report</mat-icon>',
-          //       },
-          //       {
-          //         type: 'Test Run',
-          //         value: 'Test Run',
-          //         icon: '<mat-icon>bug_report</mat-icon>',
-          //       },
-          //       {
-          //         type: 'Test Scenario',
-          //         value: 'Test Scenario',
-          //         icon: '<mat-icon>bug_report</mat-icon>',
-          //       },
-          //     ],
-          //   })
-          // );
+          this.store.dispatch(
+            populateDropdowns({
+              priorities: [
+                { type: 'Highest', value: Priority.Highest },
+                { type: 'Medium', value: Priority.Medium },
+                { type: 'High', value: Priority.High },
+                { type: 'Low', value: Priority.Low },
+                { type: 'Lowest', value: Priority.Lowest },
+              ],
+              statuses: ['To do', 'In Progress', 'Done'],
+              issueTypes: [
+                {
+                  type: 'Bug',
+                  value: 'Bug',
+                  icon: '<mat-icon>bug_report</mat-icon>',
+                },
+                {
+                  type: 'Task',
+                  value: 'Task',
+                  icon: '<mat-icon>bug_report</mat-icon>',
+                },
+                {
+                  type: 'Story',
+                  value: 'Story',
+                  icon: '<mat-icon>bug_report</mat-icon>',
+                },
+                {
+                  type: 'Epic',
+                  value: 'Epic',
+                  icon: '<mat-icon>bug_report</mat-icon>',
+                },
+                {
+                  type: 'Test Case',
+                  value: 'Test Case',
+                  icon: '<mat-icon>bug_report</mat-icon>',
+                },
+                {
+                  type: 'Test Run',
+                  value: 'Test Run',
+                  icon: '<mat-icon>bug_report</mat-icon>',
+                },
+                {
+                  type: 'Test Scenario',
+                  value: 'Test Scenario',
+                  icon: '<mat-icon>bug_report</mat-icon>',
+                },
+              ],
+            })
+          );
         }
       },
     });
