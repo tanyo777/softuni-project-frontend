@@ -35,6 +35,7 @@ import { EditComponent } from './profile/edit/edit.component';
 import { IssuebtnComponent } from './issuebtn/issuebtn.component';
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from '@angular/material/core';
+import { InvitedialogComponent } from './project/invitedialog/invitedialog.component';
 
 
 @NgModule({
@@ -54,6 +55,7 @@ import { MatNativeDateModule } from '@angular/material/core';
     InnerSectionComponent,
     EditComponent,
     IssuebtnComponent,
+    InvitedialogComponent,
 
   ],
   imports: [

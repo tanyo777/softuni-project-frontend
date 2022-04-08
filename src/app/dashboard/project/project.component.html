@@ -1,28 +1,40 @@
 <div class="project-container">
   <!-- Progress Bar -->
-  <mat-progress-bar
-    *ngIf="loading"
-    mode="indeterminate"
-    class="loading-indicator"
-  ></mat-progress-bar>
+  <mat-progress-bar *ngIf="loading" mode="indeterminate" class="loading-indicator"></mat-progress-bar>
 
   <div *ngIf="!loading" class="header-component">
     <div class="participants">
       <h1>
-        {{ projectData.name }} (Lead: {{ projectData.lead.fullName }} )
+        <span id="project-name">
+          {{ projectData.name}}
+        </span>
+        <span id="project-manager">
+          (PM: {{ projectData.lead.username }} )
+        </span>
+
+        <!-- Invite button only if logged in user is lead of the project -->
+        <button  
+        (click)="showInviteDialog()"
+        mat-raised-button color="primary" 
+        *ngIf="projectData.lead._id === currentLoggedUser._id">
+          invite participant
+        </button>
+
       </h1>
-      <app-participant-icon
-        *ngFor="let participant of projectData.participants"
-        [participant]="participant"
-      ></app-participant-icon>
+
+
+      <!-- Project participants -->
+      <div class="participants-container">
+        <app-participant-icon *ngFor="let participant of projectData.participants" [participant]="participant">
+        </app-participant-icon>
+      </div>
     </div>
   </div>
   <hr />
 
 
   <!-- Drag and drop component -->
-  <!-- <app-draganddrop *ngIf="!loading && projectData?.tasks.length" [tasks]="projectData?.tasks"></app-draganddrop> -->
-  <app-draganddrop *ngIf="!loading && projectData?.tasks.length" ></app-draganddrop>
+  <app-draganddrop *ngIf="!loading && projectData?.tasks.length"></app-draganddrop>
 
   <!-- If no tasks for the current project -->
   <div class="no-tasks" *ngIf="!projectData?.tasks.length && !loading">

@@ -33,6 +33,17 @@
         @media screen and (max-width: 500px){
             font-size: 17px;
         }
+
+        @media screen and (max-width: 770px) {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+          button {
+            margin-top: 20px;
+          }
+          padding: 10px;
+        }
     }
 
     hr {
@@ -45,23 +56,22 @@
       align-items: center;
       width: 100%;
 
-      @media  screen and (max-width: 570px) {
+      #project-name {
+        font-weight: bold;
+      }
+
+      #project-manager {
+        font-size: 20px;
+      }
+
+      .participants-container {
+        display: flex;
+      }
+
+      @media  screen and (max-width: 770px) {
           flex-direction: column;
       }
 
-
-      .change-tasks-view {
-        border: none;
-        font-size: 17px;
-        background-color: #0052CC;
-        color: white;
-        padding: 4px 8px;
-        border-radius: 5px;
-        &:hover {
-          background-color: #3f77cb;
-          transition-duration: 0.2s;
-        }
-      }
 
     }
 
@@ -73,3 +83,4 @@
     overflow-x: scroll;
   }
 }
+

@@ -41,13 +41,16 @@
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Reporter</mat-label>
-      <input matInput formControlName="reporter" />
-      <!-- Display error message -->
+      <input matInput formControlName="reporter" readonly="true"/>
+
       <mat-error
         *ngIf="createIssueForm.controls['reporter'].hasError('required')"
         >Reporter is required!</mat-error
       >
     </mat-form-field>
+
+
+    
 
     <mat-form-field class="example-full-width textarea" appearance="fill">
       <mat-label>Description</mat-label>
@@ -74,6 +77,8 @@
         >Priority is required!</mat-error
       >
     </mat-form-field>
+
+    
 
     <div class="create-issue-actions">
       <button mat-raised-button color="primary" type="submit">Create</button>

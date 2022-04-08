@@ -13,7 +13,7 @@
     <!-- Issue type -->
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Issue Type</mat-label>
-      <input type="text" matInput formControlName="issueType" />
+      <input type="text" matInput formControlName="issueType"/>
       <mat-error
         *ngIf="editTaskForm.controls['issueType'].hasError('required')"
       >
@@ -21,7 +21,7 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
+    <!-- <mat-form-field appearance="fill">
       <mat-label>Issue Type</mat-label>
       <mat-select formControlName="issueType">
         <mat-option *ngFor="let type of dropdowns.issueTypes" [value]="type">
@@ -33,7 +33,7 @@
       >
         Issue Type is <strong>required</strong>
       </mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
 
     <!-- Priority -->
 
@@ -45,13 +45,13 @@
       </mat-error>
     </mat-form-field>
 
-    <mat-form-field class="example-full-width" appearance="fill">
+    <!-- <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Status</mat-label>
       <input type="text" matInput formControlName="status" />
       <mat-error *ngIf="editTaskForm.controls['status'].hasError('required')">
         Task status is <strong>required</strong>
       </mat-error>
-    </mat-form-field>
+    </mat-form-field> -->
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Description</mat-label>

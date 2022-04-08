@@ -47,7 +47,9 @@ export class CreateissueComponent implements OnInit {
 
   projects: any[] = [];
 
-  selectedProject!: IProject;
+  // selectedProject!: IProject;
+
+  selectedProjectId!: string;
 
   constructor(
     private store: Store, 
@@ -80,14 +82,15 @@ export class CreateissueComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUser().subscribe({
       next: (user: any) => {
-        console.log(user);
+        this.createIssueForm.controls['reporter'].setValue(user.user.username);
         this.projects = user.user.projects;
       }
     })
 
     this.store.select(projectSelector).subscribe({
       next: (res: any) => {
-        this.selectedProject = res._id;
+        this.selectedProjectId = res._id;
+        
       }
     });
   }
@@ -99,7 +102,7 @@ export class CreateissueComponent implements OnInit {
       this.taskService.postTask(payload).subscribe((res: any) => {
         if(res.msg) {
           const projectId = res.msg.project;
-          if(this.selectedProject === projectId) {
+          if(this.selectedProjectId === projectId) {
             this.store.dispatch(addIssueToSelectedProject(res.msg));
           }
           this.dialog.closeAll();

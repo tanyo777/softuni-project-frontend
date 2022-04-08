@@ -17,12 +17,19 @@
         width: 70vw;
     }
 
+    
+
     mat-icon {
         background: tomato;
     }
 
     mat-form-field {
         width: 70%;
+
+        @media screen and (max-width: 550px) {
+            width: 100%;
+        }
+
     }
     .textarea {
         height: 20vh;

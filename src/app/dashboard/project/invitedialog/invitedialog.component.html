@@ -1,0 +1,14 @@
+<form [formGroup]="inviteForm" (ngSubmit)="invite()">
+    <h2>Invite a participant</h2>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Participant Email</mat-label>
+        <input matInput placeholder="xxxx@gmail.com" formControlName="email">
+        <mat-error *ngIf="inviteForm.controls['email'].hasError('required') && inviteForm.controls['email'].touched">Email is required!</mat-error>
+        <mat-error *ngIf="inviteForm.controls['email'].hasError('email') && inviteForm.controls['email'].touched">Invalid email!</mat-error>
+    </mat-form-field>
+
+        <div>
+            <button type="submit" mat-raised-button color="primary">Invite</button>
+            <button type="button" mat-button mat-dialog-close>Cancel</button>
+        </div>
+</form>

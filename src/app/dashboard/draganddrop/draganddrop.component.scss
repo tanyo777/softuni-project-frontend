@@ -1,4 +1,10 @@
 .drag-container {
+  @media screen and (max-width: 995px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
 }
 
 .example-container {

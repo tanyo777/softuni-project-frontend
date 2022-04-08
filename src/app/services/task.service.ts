@@ -28,4 +28,11 @@ export class TaskService {
       status,
     });
   }
+
+  updateTask(id: string, properties: {createdAt: string, description: string, issueType: string, priority: string, summary: string, updatedAt: string}): Observable<object> {
+    return this.http.post(`${environment.baseUrl}/task/update`, {
+      id,
+      properties
+    });
+  }
 }

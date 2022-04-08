@@ -32,7 +32,11 @@ export class UserService {
   }
 
 
-  loginUser(email: string, password: string) {
+  loginUser(email: string, password: string): Observable<object> {
     return this.httpClient.post(`${environment.baseUrl}/login`, {email, password});
+  }
+
+  inviteUser(email: string, projectId: string): Observable<object> {
+    return this.httpClient.post(`${environment.baseUrl}/user/invite`, { email, projectId });
   }
 }

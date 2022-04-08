@@ -1,5 +1,5 @@
 import { createReducer, on } from "@ngrx/store";
-import { addIssueToSelectedProject, changeTaskStatus, deleteTask, setLastViewedProject } from "../actions/projects";
+import { addIssueToSelectedProject, addParticipant, changeTaskStatus, deleteTask, editTaskProps, setLastViewedProject } from "../actions/projects";
 import { globalState } from "../app.state";
 
 export const projectReducer = createReducer(
@@ -37,5 +37,37 @@ export const projectReducer = createReducer(
             ...state.lastViewedProject,
             tasks: [...state.lastViewedProject.tasks, issue]
         }
-    }))
+    })),
+    on(addParticipant, (state: any, participant) => ({
+        ...state,
+        lastViewedProject: {
+            ...state.lastViewedProject,
+            participants: [...state.lastViewedProject.participants, participant]
+        }
+    })),
+    // :TODO
+    on(editTaskProps, (state: any, { id, summary, issueType, priority, description, createdAt, updatedAt}) => ({
+        ...state,
+        lastViewedProject: {
+            ...state.lastViewedProject,
+           tasks: state.lastViewedProject.tasks.map((obj: any) => {
+               if(obj._id === id) {
+                   obj = {
+                       ...obj,
+                       id,
+                       summary,
+                       issueType,
+                       priority,
+                       description,
+                       createdAt,
+                       updatedAt
+                   }
+                   
+               }
+               return obj;
+           })
+        }
+    })),
+
+    
 )
