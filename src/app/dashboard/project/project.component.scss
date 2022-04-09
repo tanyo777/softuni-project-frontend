@@ -56,6 +56,11 @@
       align-items: center;
       width: 100%;
 
+
+      #leave-project {
+        margin-left: 20px;
+      }
+
       #project-name {
         font-weight: bold;
       }
@@ -70,6 +75,10 @@
 
       @media  screen and (max-width: 770px) {
           flex-direction: column;
+
+          #leave-project {
+            margin-left: 0px;
+          }
       }
 
 

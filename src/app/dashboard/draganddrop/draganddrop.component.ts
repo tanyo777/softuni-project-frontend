@@ -11,6 +11,8 @@ import { TaskService } from 'src/app/services/task.service';
 import { Store } from '@ngrx/store';
 import { changeTaskStatus } from 'src/app/+store/actions/projects';
 import { projectSelector } from 'src/app/+store/selectors/project';
+import { userSelector } from 'src/app/+store/selectors/user';
+import { IUser } from 'src/app/interfaces/user';
 
 @Component({
   selector: 'app-draganddrop',
@@ -18,7 +20,6 @@ import { projectSelector } from 'src/app/+store/selectors/project';
   styleUrls: ['./draganddrop.component.scss'],
 })
 export class DraganddropComponent implements OnInit {
-  // @Input() tasks!: ITask[];
   tasks!: ITask[];
 
   todo: ITask[];
@@ -26,6 +27,11 @@ export class DraganddropComponent implements OnInit {
   inProgress: ITask[];
 
   done: ITask[];
+
+
+  loggedInUser!: IUser;
+
+  participants!: IUser[];
 
   constructor(
     private dialog: MatDialog,
@@ -38,8 +44,19 @@ export class DraganddropComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    this.store.select(userSelector).subscribe({
+      next: (user) => {
+        this.loggedInUser = user;
+      }
+    })
+
+
     this.store.select(projectSelector).subscribe({
       next: (res: any) => {
+
+        this.participants = res.participants;
+
         this.tasks = res.tasks;
         this.todo = this.tasks.filter((task) => task.status === 'To do');
 
@@ -85,5 +102,6 @@ export class DraganddropComponent implements OnInit {
   showEditTask(task: ITask): void {
     const dialogRef = this.dialog.open(ShowTaskComponent);
     dialogRef.componentInstance.task = task;
+    dialogRef.componentInstance.participants = this.participants;
   }
 }

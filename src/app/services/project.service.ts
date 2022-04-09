@@ -21,4 +21,12 @@ export class ProjectService {
     return this.http.get<IProject>(`${environment.baseUrl}/projects/${id}`);
   }
 
+  leaveProjectManager(projectId: string, participantId: string, pmEmail: string): Observable<object> {
+    return this.http.post(`${environment.baseUrl}/project/leave-manager`, { projectId, participantId, pmEmail })
+  }
+
+  leaveProjectParticipant(projectId: string, participantId: string): Observable<object> {
+    return this.http.post(`${environment.baseUrl}/project/leave-participant`, { projectId, participantId })
+  }
+
 }

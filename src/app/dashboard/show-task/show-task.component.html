@@ -45,6 +45,16 @@
       </mat-error>
     </mat-form-field>
 
+
+    <mat-form-field appearance="fill">
+      <mat-label>Assigned To</mat-label>
+      <mat-select formControlName="assignedTo">
+        <mat-option *ngFor="let participant of participants" [value]="participant.username">
+          {{participant.username}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
     <!-- <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Status</mat-label>
       <input type="text" matInput formControlName="status" />

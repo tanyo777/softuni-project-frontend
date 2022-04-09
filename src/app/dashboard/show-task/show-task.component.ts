@@ -6,6 +6,7 @@ import { TaskService } from 'src/app/services/task.service';
 import { Store } from '@ngrx/store';
 import { deleteTask, editTaskProps } from 'src/app/+store/actions/projects';
 import { dropdownsSelector } from 'src/app/+store/selectors/dropdowns';
+import { IUser } from 'src/app/interfaces/user';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { dropdownsSelector } from 'src/app/+store/selectors/dropdowns';
 export class ShowTaskComponent implements OnInit {
   task!: ITask;
 
+  participants!: IUser[];
 
   dropdowns!: {issueTypes: [{type: string, value: string}]};
 
@@ -26,6 +28,7 @@ export class ShowTaskComponent implements OnInit {
     description: new FormControl('', [Validators.required]),
     createdAt: new FormControl(''),
     updatedAt: new FormControl(''),
+    assignedTo: new FormControl('')
   });
 
   constructor(
@@ -51,6 +54,7 @@ export class ShowTaskComponent implements OnInit {
     this.editTaskForm.controls['description'].setValue(this.task.description);
     this.editTaskForm.controls['createdAt'].setValue(this.task.createdAt);
     this.editTaskForm.controls['updatedAt'].setValue(this.task.updatedAt);
+    this.editTaskForm.controls['assignedTo'].setValue(this.task.assignedTo);
 
     
   }
@@ -64,14 +68,16 @@ export class ShowTaskComponent implements OnInit {
       const editValues = this.editTaskForm.value;
       const id = this.task._id;
 
+
+      console.log(editValues);
       // request
 
       this.taskService.updateTask(id, editValues).subscribe({
         next: (res: any) => {
-          let { summary, issueType, priority, description, createdAt, updatedAt } = editValues;
+          let { summary, issueType, priority, description, createdAt, updatedAt, assignedTo } = editValues;
 
           // put the edited task to the store
-          this.store.dispatch(editTaskProps({ id, summary, issueType, priority, description, createdAt, updatedAt}));
+          this.store.dispatch(editTaskProps({ id, summary, issueType, priority, description, createdAt, updatedAt, assignedTo}));
           this.closeDialog();
         },
         error: (error: Error) => {

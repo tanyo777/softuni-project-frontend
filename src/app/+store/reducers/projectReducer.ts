@@ -46,7 +46,7 @@ export const projectReducer = createReducer(
         }
     })),
     // :TODO
-    on(editTaskProps, (state: any, { id, summary, issueType, priority, description, createdAt, updatedAt}) => ({
+    on(editTaskProps, (state: any, { id, summary, issueType, priority, description, createdAt, updatedAt, assignedTo}) => ({
         ...state,
         lastViewedProject: {
             ...state.lastViewedProject,
@@ -60,7 +60,8 @@ export const projectReducer = createReducer(
                        priority,
                        description,
                        createdAt,
-                       updatedAt
+                       updatedAt,
+                       assignedTo
                    }
                    
                }

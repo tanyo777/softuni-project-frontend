@@ -97,9 +97,11 @@ export class CreateissueComponent implements OnInit {
 
 
   submitIssue() {
+    console.log(this.createIssueForm.value);
     if(this.createIssueForm.valid) {
       const payload = this.createIssueForm.value;
       this.taskService.postTask(payload).subscribe((res: any) => {
+        console.log(res);
         if(res.msg) {
           const projectId = res.msg.project;
           if(this.selectedProjectId === projectId) {

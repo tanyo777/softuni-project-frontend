@@ -1,0 +1,14 @@
+<form [formGroup]="leaveAndAssignManagerPrivilegesForm" (ngSubmit)="leave()">
+    <h2>Choose new PM</h2>
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Manager's email</mat-label>
+        <input matInput placeholder="xxxx@gmail.com" formControlName="newManagerEmail">
+        <mat-error *ngIf="leaveAndAssignManagerPrivilegesForm.controls['newManagerEmail'].hasError('required') && leaveAndAssignManagerPrivilegesForm.controls['newManagerEmail'].touched">Email is required!</mat-error>
+        <mat-error *ngIf="leaveAndAssignManagerPrivilegesForm.controls['newManagerEmail'].hasError('email') && leaveAndAssignManagerPrivilegesForm.controls['newManagerEmail'].touched">Invalid email!</mat-error>
+    </mat-form-field>
+
+        <div>
+            <button type="submit" mat-raised-button color="primary">Leave</button>
+            <button type="button" mat-button mat-dialog-close>Cancel</button>
+        </div>
+</form>

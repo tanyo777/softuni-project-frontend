@@ -36,6 +36,8 @@ import { IssuebtnComponent } from './issuebtn/issuebtn.component';
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from '@angular/material/core';
 import { InvitedialogComponent } from './project/invitedialog/invitedialog.component';
+import { LeaveDialogComponent } from './project/leave-dialog/leave-dialog.component';
+import { LeaveDialogManagerComponent } from './project/leave-dialog-manager/leave-dialog-manager.component';
 
 
 @NgModule({
@@ -56,6 +58,8 @@ import { InvitedialogComponent } from './project/invitedialog/invitedialog.compo
     EditComponent,
     IssuebtnComponent,
     InvitedialogComponent,
+    LeaveDialogComponent,
+    LeaveDialogManagerComponent,
 
   ],
   imports: [

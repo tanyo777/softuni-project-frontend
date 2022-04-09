@@ -10,6 +10,8 @@ import { userSelector } from 'src/app/+store/selectors/user';
 import { IUser } from 'src/app/interfaces/user';
 import { ProjectService } from 'src/app/services/project.service';
 import { InvitedialogComponent } from './invitedialog/invitedialog.component';
+import { LeaveDialogManagerComponent } from './leave-dialog-manager/leave-dialog-manager.component';
+import { LeaveDialogComponent } from './leave-dialog/leave-dialog.component';
 
 @Component({
   selector: 'app-project',
@@ -36,7 +38,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
     private projectService: ProjectService,
     private store: Store,
     private dialog: MatDialog
-  ) { 
+  ) {
     this.projectId = "";
     this.loading = false;
   }
@@ -65,7 +67,6 @@ export class ProjectComponent implements OnInit, OnDestroy {
         this.store.select(projectSelector).subscribe({
           next: (res) => {
             this.projectData = res;
-            console.log("store", this.projectData);
           }
         })
       }
@@ -73,6 +74,20 @@ export class ProjectComponent implements OnInit, OnDestroy {
   }
 
 
+
+  showLeaveDiloag(): void {
+    if (this.currentLoggedUser._id === this.projectData.lead._id) {
+      let dialogRefManager = this.dialog.open(LeaveDialogManagerComponent);
+      let instance = dialogRefManager.componentInstance;
+      instance.participantId = this.currentLoggedUser._id;
+      instance.project = this.projectData;
+    } else {
+      let dialogRefParticipant = this.dialog.open(LeaveDialogComponent);
+      let instance = dialogRefParticipant.componentInstance;
+      instance.participantId = this.currentLoggedUser._id;
+      instance.project = this.projectData;
+    }
+  }
 
   showInviteDialog(): void {
     let dialogRef = this.dialog.open(InvitedialogComponent);
@@ -82,7 +97,7 @@ export class ProjectComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-      this.projectSubscription.unsubscribe();
+    this.projectSubscription.unsubscribe();
   }
 
 }

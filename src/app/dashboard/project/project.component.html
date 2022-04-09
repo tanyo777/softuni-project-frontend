@@ -13,12 +13,16 @@
         </span>
 
         <!-- Invite button only if logged in user is lead of the project -->
-        <button  
-        (click)="showInviteDialog()"
-        mat-raised-button color="primary" 
-        *ngIf="projectData.lead._id === currentLoggedUser._id">
+        <button (click)="showInviteDialog()" mat-raised-button color="primary"
+          *ngIf="projectData.lead._id === currentLoggedUser._id">
           invite participant
         </button>
+        <button 
+        mat-raised-button color="accent" 
+        id="leave-project"
+        (click)="showLeaveDiloag()"
+        >Leave</button>
+
 
       </h1>
 

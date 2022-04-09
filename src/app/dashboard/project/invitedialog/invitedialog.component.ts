@@ -39,6 +39,10 @@ export class InvitedialogComponent implements OnInit {
         next: (user: any) => {
           if(user.error) {
             this._snackBar.open(user.error, "close");
+
+            setTimeout(() => {
+              this._snackBar.dismiss();
+            }, 3000)
             // show error message
           } else {
             // add the user in the store to the currentProject
