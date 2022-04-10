@@ -5,11 +5,10 @@ import { Store } from '@ngrx/store';
 import { TaskService } from 'src/app/services/task.service';
 import { MatDialog } from '@angular/material/dialog';
 import { IIssue, IPriority } from 'src/app/interfaces/issue';
-import { Priority } from 'src/app/interfaces/enumPriority';
 import { UserService } from 'src/app/services/user.service';
 import { projectSelector } from 'src/app/+store/selectors/project';
-import { IProject } from 'src/app/interfaces/project';
 import { addIssueToSelectedProject } from 'src/app/+store/actions/projects';
+import { dropdownsSelector } from 'src/app/+store/selectors/dropdowns';
 
 
 @Component({
@@ -58,28 +57,18 @@ export class CreateissueComponent implements OnInit {
     public dialog: MatDialog,
     private userService: UserService
   ) {
-    this.issueTypes = [
-      {type: "Bug", value: "Bug", icon: "<mat-icon>bug_report</mat-icon>"},
-      {type: "Task", value: "Task", icon: "<mat-icon>bug_report</mat-icon>"},
-      {type: "Story",  value: "Story", icon: "<mat-icon>bug_report</mat-icon>"},
-      {type: "Epic",  value: "Epic", icon: "<mat-icon>bug_report</mat-icon>"},
-      {type: "Test Case",  value: "Test Case", icon: "<mat-icon>bug_report</mat-icon>"},
-      {type: "Test Run",  value: "Test Run", icon: "<mat-icon>bug_report</mat-icon>"},
-      {type: "Test Scenario",  value: "Test Scenario", icon: "<mat-icon>bug_report</mat-icon>"},
-    ];
-
-
-
-    this.priorities = [
-      { type: "Highest", value: Priority.Highest},
-      { type: "Medium", value: Priority.Medium},
-      { type: "High", value: Priority.High},
-      { type: "Low", value: Priority.Low},
-      { type: "Lowest", value: Priority.Lowest}
-    ];
+   
   }
 
   ngOnInit(): void {
+
+    this.store.select(dropdownsSelector).subscribe({
+      next: (dropdowns) => {
+        this.issueTypes = dropdowns.issueTypes;
+        this.priorities = dropdowns.priorities;
+      }
+    })
+
     this.userService.getUser().subscribe({
       next: (user: any) => {
         this.createIssueForm.controls['reporter'].setValue(user.user.username);
@@ -90,18 +79,16 @@ export class CreateissueComponent implements OnInit {
     this.store.select(projectSelector).subscribe({
       next: (res: any) => {
         this.selectedProjectId = res._id;
-        
       }
     });
   }
 
 
+
   submitIssue() {
-    console.log(this.createIssueForm.value);
     if(this.createIssueForm.valid) {
       const payload = this.createIssueForm.value;
       this.taskService.postTask(payload).subscribe((res: any) => {
-        console.log(res);
         if(res.msg) {
           const projectId = res.msg.project;
           if(this.selectedProjectId === projectId) {

@@ -5,89 +5,63 @@
       <mat-label>Project Key</mat-label>
       <mat-select formControlName="project" name="type">
         <mat-option *ngFor="let project of projects" [value]="project.key">
-          <mat-icon>bug_report</mat-icon> {{ project.key }}
+          {{ project.key }}
         </mat-option>
       </mat-select>
 
-      <mat-error
-        *ngIf="createIssueForm.controls['project'].hasError('required')"
-        >Project key is required!</mat-error
-      >
+      <mat-error *ngIf="createIssueForm.controls['project'].hasError('required')">Project key is required!</mat-error>
     </mat-form-field>
 
     <mat-form-field appearance="fill">
       <mat-label>Issue Type</mat-label>
       <mat-select formControlName="issueType" name="type">
         <mat-option *ngFor="let type of issueTypes" [value]="type.value">
-          <mat-icon>bug_report</mat-icon> {{ type.value }}
+          {{ type.value }}
         </mat-option>
       </mat-select>
       <!-- Display error message -->
-      <mat-error
-        *ngIf="createIssueForm.controls['issueType'].hasError('required')"
-        >Type is required!</mat-error
-      >
+      <mat-error *ngIf="createIssueForm.controls['issueType'].hasError('required')">Type is required!</mat-error>
     </mat-form-field>
     <hr />
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Summary</mat-label>
       <input matInput formControlName="summary" />
       <!-- Display error message -->
-      <mat-error
-        *ngIf="createIssueForm.controls['summary'].hasError('required')"
-        >Summary is required!</mat-error
-      >
+      <mat-error *ngIf="createIssueForm.controls['summary'].hasError('required')">Summary is required!</mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Reporter</mat-label>
-      <input matInput formControlName="reporter" readonly="true"/>
+      <input matInput formControlName="reporter" readonly="true" />
 
-      <mat-error
-        *ngIf="createIssueForm.controls['reporter'].hasError('required')"
-        >Reporter is required!</mat-error
-      >
+      <mat-error *ngIf="createIssueForm.controls['reporter'].hasError('required')">Reporter is required!</mat-error>
     </mat-form-field>
 
 
-    
 
-    <mat-form-field class="example-full-width textarea" appearance="fill">
-      <mat-label>Description</mat-label>
-      <textarea
-        matInput
-        class="textarea"
-        formControlName="description"
-      ></textarea>
-    </mat-form-field>
 
     <mat-form-field class="example-full-width priority" appearance="fill">
       <mat-label>Priority</mat-label>
       <mat-select formControlName="priority" name="priority">
-        <mat-option
-          *ngFor="let priority of priorities"
-          [value]="priority.value"
-        >
+        <mat-option *ngFor="let priority of priorities" [value]="priority.value">
           {{ priority.value }}
         </mat-option>
       </mat-select>
       <!-- Display error message -->
-      <mat-error
-        *ngIf="createIssueForm.controls['priority'].hasError('required')"
-        >Priority is required!</mat-error
-      >
+      <mat-error *ngIf="createIssueForm.controls['priority'].hasError('required')">Priority is required!</mat-error>
     </mat-form-field>
 
-    
+    <mat-form-field class="example-full-width textarea" appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput class="textarea" formControlName="description"></textarea>
+    </mat-form-field>
+
+
+
 
     <div class="create-issue-actions">
       <button mat-raised-button color="primary" type="submit">Create</button>
-      <button
-        mat-raised-button
-        color="primary"
-        type="button"
-        (click)="cancelCreateIssueModal()"
-      >
+      <button mat-raised-button color="primary" type="button" (click)="cancelCreateIssueModal()">
         Cancel
       </button>
     </div>

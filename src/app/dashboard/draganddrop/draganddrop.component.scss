@@ -1,4 +1,7 @@
 .drag-container {
+  padding: 10px;
+  max-height: 75vh;
+  overflow-y: auto;
   @media screen and (max-width: 995px) {
     display: flex;
     justify-content: center;

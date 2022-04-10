@@ -1,38 +1,34 @@
-<div class="profile-container" *ngIf="!loading">
-  <div class="profile">
+<div class="profile-container">
+  <span id="spinner" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </span>
+
+
+  <div class="profile" *ngIf="!loading">
     <app-profilepic></app-profilepic>
     <h2>Profile</h2>
     <div class="inner">
-      <app-inner-section
-        [header]="'Username'"
-        [sectionValue]="user?.username"
-      ></app-inner-section>
+      <app-inner-section [header]="'Username'" [sectionValue]="user?.username"></app-inner-section>
     </div>
   </div>
 
-  <div class="about">
+  <div class="about" *ngIf="!loading">
     <h2>About you</h2>
     <div class="inner">
-      <app-inner-section
-        [header]="'Account Name'"
-        [sectionValue]="user?.fullName"
-      ></app-inner-section>
+      <app-inner-section [header]="'Account Name'" [sectionValue]="user?.fullName"></app-inner-section>
     </div>
   </div>
 
-  <div class="contacts">
+  <div class="contacts" *ngIf="!loading">
     <h2>Contacts</h2>
     <div class="inner">
-      <app-inner-section
-        [header]="'Email Address'"
-        [sectionValue]="user?.email"
-      ></app-inner-section>
+      <app-inner-section [header]="'Email Address'" [sectionValue]="user?.email"></app-inner-section>
     </div>
   </div>
 </div>
 
 
-<h2 
+<!-- <h2 
 style="margin-top: 100px;"
 *ngIf="loading"
->Loading...</h2>
+>Loading...</h2> -->

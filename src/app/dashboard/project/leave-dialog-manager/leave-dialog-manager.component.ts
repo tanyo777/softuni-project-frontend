@@ -48,7 +48,6 @@ export class LeaveDialogManagerComponent implements OnInit {
               this._snackBar.dismiss();
             }, 3000)
           } else {
-            console.log(res);
             this.store.dispatch(leaveProject({ id: projectId }));
             this.matDialog.closeAll();
             this.router.navigate(['/dashboard/projects']);

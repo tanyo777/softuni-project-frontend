@@ -59,7 +59,6 @@ export class CreateprojectComponent implements OnInit {
         }
       })
 
-      // console.log(this.newProjectForm.value);
     }
   }
 }

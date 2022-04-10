@@ -7,7 +7,9 @@ import { Store } from '@ngrx/store';
 import { deleteTask, editTaskProps } from 'src/app/+store/actions/projects';
 import { dropdownsSelector } from 'src/app/+store/selectors/dropdowns';
 import { IUser } from 'src/app/interfaces/user';
-
+import { DatePipe } from '@angular/common';
+import { IIssue, IPriority } from 'src/app/interfaces/issue';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-show-task',
@@ -19,7 +21,6 @@ export class ShowTaskComponent implements OnInit {
 
   participants!: IUser[];
 
-  dropdowns!: {issueTypes: [{type: string, value: string}]};
 
   editTaskForm: FormGroup = new FormGroup({
     summary: new FormControl('', [Validators.required]),
@@ -31,29 +32,39 @@ export class ShowTaskComponent implements OnInit {
     assignedTo: new FormControl('')
   });
 
+  priorities!: IPriority[];
+
+  issueTypes!: IIssue[];
+
   constructor(
     private dialog: MatDialog,
     private taskService: TaskService,
-    private store: Store
+    private store: Store,
+    private datePipe: DatePipe,
+    private _snackbar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
 
-    console.log(this.task);
 
     this.store.select(dropdownsSelector).subscribe({
       next: (dropdowns) => {
-        this.dropdowns = dropdowns;
-        console.log(dropdowns);
+        this.priorities = dropdowns.priorities;
+        this.issueTypes = dropdowns.issueTypes;
       }
     });
+
+    const updatedAt = this.datePipe.transform(this.task.updatedAt, "dd/MM/yyyy");
+    const createdAt = this.datePipe.transform(this.task.createdAt, "dd/MM/yyyy");
+
+
     //  set controls values to match task props
     this.editTaskForm.controls['summary'].setValue(this.task.summary);
     this.editTaskForm.controls['issueType'].setValue(this.task.issueType);
     this.editTaskForm.controls['priority'].setValue(this.task.priority);
     this.editTaskForm.controls['description'].setValue(this.task.description);
-    this.editTaskForm.controls['createdAt'].setValue(this.task.createdAt);
-    this.editTaskForm.controls['updatedAt'].setValue(this.task.updatedAt);
+    this.editTaskForm.controls['createdAt'].setValue(createdAt);
+    this.editTaskForm.controls['updatedAt'].setValue(updatedAt);
     this.editTaskForm.controls['assignedTo'].setValue(this.task.assignedTo);
 
     
@@ -68,8 +79,6 @@ export class ShowTaskComponent implements OnInit {
       const editValues = this.editTaskForm.value;
       const id = this.task._id;
 
-
-      console.log(editValues);
       // request
 
       this.taskService.updateTask(id, editValues).subscribe({
@@ -81,7 +90,10 @@ export class ShowTaskComponent implements OnInit {
           this.closeDialog();
         },
         error: (error: Error) => {
-          console.log(error.message);
+          this._snackbar.open(error.message, "close");
+          setTimeout(() => {
+            this._snackbar.dismiss();
+          }, 2500);
         }
       })
     }
@@ -95,7 +107,7 @@ export class ShowTaskComponent implements OnInit {
         this.dialog.closeAll();
       },
       error: (error: Error) => {
-        console.log(error.message);
+        // console.log(error.message);
       },
     });
   }

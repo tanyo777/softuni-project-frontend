@@ -39,42 +39,34 @@ export class DashboardComponent implements OnInit {
                 { type: 'Low', value: Priority.Low },
                 { type: 'Lowest', value: Priority.Lowest },
               ],
-              statuses: ['To do', 'In Progress', 'Done'],
               issueTypes: [
                 {
                   type: 'Bug',
                   value: 'Bug',
-                  icon: '<mat-icon>bug_report</mat-icon>',
                 },
                 {
                   type: 'Task',
                   value: 'Task',
-                  icon: '<mat-icon>bug_report</mat-icon>',
                 },
                 {
                   type: 'Story',
                   value: 'Story',
-                  icon: '<mat-icon>bug_report</mat-icon>',
                 },
                 {
                   type: 'Epic',
                   value: 'Epic',
-                  icon: '<mat-icon>bug_report</mat-icon>',
                 },
                 {
                   type: 'Test Case',
                   value: 'Test Case',
-                  icon: '<mat-icon>bug_report</mat-icon>',
                 },
                 {
                   type: 'Test Run',
                   value: 'Test Run',
-                  icon: '<mat-icon>bug_report</mat-icon>',
                 },
                 {
                   type: 'Test Scenario',
                   value: 'Test Scenario',
-                  icon: '<mat-icon>bug_report</mat-icon>',
                 },
               ],
             })

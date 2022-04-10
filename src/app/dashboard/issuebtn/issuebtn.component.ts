@@ -29,10 +29,6 @@ export class IssuebtnComponent implements OnInit {
 
   openDialog() {
     const dialogRef = this.dialog.open(CreateissueComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(`Dialog result: ${result}`);
-    });
   }
 
 }

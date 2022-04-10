@@ -1,12 +1,13 @@
 
 .container-create-issue {
-    height: 85vh;
+    max-height: 85vh;
     width: 45vw;
     cursor: default;
 
 
     .create-issue-actions {
         padding: 10px 0px 10px 0px;
+        margin-top: 20px;
     
         button[type=submit] {
             margin-right: 20px;
@@ -34,10 +35,6 @@
     .textarea {
         height: 20vh;
         width: 100%;
-    }
-
-    .priority {
-        margin-top: 20px;
     }
     
 }

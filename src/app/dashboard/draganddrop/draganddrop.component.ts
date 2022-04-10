@@ -89,7 +89,6 @@ export class DraganddropComponent implements OnInit {
         event.container.element.nativeElement.parentNode?.firstChild
           ?.textContent;
 
-      console.log(status);
 
       const taskId = event.item.element.nativeElement.id;
       this.store.dispatch(changeTaskStatus({ status, id: taskId }));

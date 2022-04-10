@@ -53,7 +53,7 @@ export class InvitedialogComponent implements OnInit {
           }
         },
         error: (err: Error) => {
-          console.log("error message", err.message);
+          // console.log("error message", err.message);
           // show error to the user
         } 
       })

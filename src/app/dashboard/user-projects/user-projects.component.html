@@ -1,5 +1,5 @@
 <div class="projects-container">
-    <h1 *ngIf="loading">Loading...</h1>
+  <mat-spinner *ngIf="loading"></mat-spinner>
     <h1 *ngIf="!projects.length && !loading" class="message-no-projects">No project yet!</h1>
     <h1  *ngIf="projects.length">Projects</h1>
     <table mat-table [dataSource]="dataSource" matSort  *ngIf="projects.length"

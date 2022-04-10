@@ -11,40 +11,39 @@
 
 
     <!-- Issue type -->
-    <mat-form-field class="example-full-width" appearance="fill">
+    <mat-form-field appearance="fill">
       <mat-label>Issue Type</mat-label>
-      <input type="text" matInput formControlName="issueType"/>
-      <mat-error
-        *ngIf="editTaskForm.controls['issueType'].hasError('required')"
-      >
+      <mat-select formControlName="issueType" name="type">
+        <mat-option *ngFor="let type of issueTypes" [value]="type.value">
+          {{ type.value }}
+        </mat-option>
+      </mat-select>
+      <!-- Display error message -->
+      <mat-error *ngIf="editTaskForm.controls['issueType'].hasError('required')">
         Issue Type is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
-    <!-- <mat-form-field appearance="fill">
-      <mat-label>Issue Type</mat-label>
-      <mat-select formControlName="issueType">
-        <mat-option *ngFor="let type of dropdowns.issueTypes" [value]="type">
-          {{type.value}}
-        </mat-option>
-      </mat-select>
-      <mat-error
-        *ngIf="editTaskForm.controls['issueType'].hasError('required') && editTaskForm.controls['issueType'].touched"
-      >
-        Issue Type is <strong>required</strong>
-      </mat-error>
-    </mat-form-field> -->
+
+
 
     <!-- Priority -->
 
-    <mat-form-field class="example-full-width" appearance="fill">
+    <mat-form-field class="example-full-width priority" appearance="fill">
       <mat-label>Priority</mat-label>
-      <input type="text" matInput formControlName="priority" />
+      <mat-select formControlName="priority" name="priority">
+        <mat-option *ngFor="let priority of priorities" [value]="priority.value">
+          {{ priority.value }}
+        </mat-option>
+      </mat-select>
+      <!-- Display error message -->
       <mat-error *ngIf="editTaskForm.controls['priority'].hasError('required')">
         Task priority is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
+
+    <!-- Assigned to -->
 
     <mat-form-field appearance="fill">
       <mat-label>Assigned To</mat-label>
@@ -55,46 +54,24 @@
       </mat-select>
     </mat-form-field>
 
-    <!-- <mat-form-field class="example-full-width" appearance="fill">
-      <mat-label>Status</mat-label>
-      <input type="text" matInput formControlName="status" />
-      <mat-error *ngIf="editTaskForm.controls['status'].hasError('required')">
-        Task status is <strong>required</strong>
-      </mat-error>
-    </mat-form-field> -->
-
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Description</mat-label>
       <!-- <input type="text" matInput formControlName="description" /> -->
       <textarea type="text" matInput formControlName="description"></textarea>
-      <mat-error
-        *ngIf="editTaskForm.controls['description'].hasError('required')"
-      >
+      <mat-error *ngIf="editTaskForm.controls['description'].hasError('required')">
         Task description is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Created at</mat-label>
-      <input matInput [matDatepicker]="picker" formControlName="createdAt"/>
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-      <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
-          Email is <strong>required</strong>
-        </mat-error>  -->
+      <input type="text" matInput formControlName="createdAt" readonly="true"/>
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Updated at</mat-label>
-      <!-- <input type="text" matInput formControlName="updatedAt" /> -->
+      <input type="text" matInput formControlName="updatedAt" readonly="true" />
 
-      <input matInput [matDatepicker]="picker1" formControlName="updatedAt"/>
-      <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-      <mat-datepicker #picker1></mat-datepicker>
-
-      <!-- <mat-error *ngIf="emailFormControl.hasError('required')">
-          Email is <strong>required</strong>
-        </mat-error>  -->
     </mat-form-field>
 
     <div class="container-buttons">
@@ -102,23 +79,11 @@
         Edit
       </button>
 
-      <button
-        type="button"
-        mat-raised-button
-        color="primary"
-        (click)="closeDialog()"
-        class="btn"
-      >
+      <button type="button" mat-raised-button color="primary" (click)="closeDialog()" class="btn">
         Close
       </button>
 
-      <button
-        type="button"
-        mat-raised-button
-        color="warn"
-        class="btn"
-        (click)="deleteTaskHandler(task._id)"
-      >
+      <button type="button" mat-raised-button color="warn" class="btn" (click)="deleteTaskHandler(task._id)">
         Delete task
       </button>
     </div>

@@ -30,8 +30,6 @@ export class LeaveDialogComponent implements OnInit {
 
   leaveHandler(): void {
     const projectId = this.project._id;
-    console.log(projectId);
-    console.log(this.participantId);
     this.projectService.leaveProjectParticipant(projectId, this.participantId).subscribe({
       next: (res) => {
         this.store.dispatch(leaveProject({ id: projectId }));

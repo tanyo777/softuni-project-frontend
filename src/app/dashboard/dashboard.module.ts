@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { DashboardComponent } from './dashboard.component';
@@ -38,7 +38,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { InvitedialogComponent } from './project/invitedialog/invitedialog.component';
 import { LeaveDialogComponent } from './project/leave-dialog/leave-dialog.component';
 import { LeaveDialogManagerComponent } from './project/leave-dialog-manager/leave-dialog-manager.component';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -83,10 +83,13 @@ import { LeaveDialogManagerComponent } from './project/leave-dialog-manager/leav
     DragDropModule,
     MatDatepickerModule,
     MatNativeDateModule,
-
+    MatProgressSpinnerModule
   ],
   exports: [
 
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class DashboardModule { }

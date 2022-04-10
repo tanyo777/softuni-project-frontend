@@ -18,7 +18,6 @@ export class ParticipantIconComponent implements OnInit {
   
   ngOnInit(): void {
     this.firstLetterOfTheName = this.participant.fullName[0];
-    console.log(this.firstLetterOfTheName);
   }
 
 }

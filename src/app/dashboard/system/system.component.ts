@@ -45,7 +45,6 @@ export class SystemComponent implements OnInit {
   ngOnInit(): void {
     this.store.select(userSelector).subscribe({
       next: (userData: IUser) => {
-        console.log(userData);
         this.accountCreatedOn = userData.createdAt;
       }
     });
