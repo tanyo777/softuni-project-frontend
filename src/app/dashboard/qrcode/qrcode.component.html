@@ -1,0 +1,10 @@
+<div class="qrcode-container">
+
+    <mat-spinner *ngIf="loading"></mat-spinner>
+
+    <div *ngIf="!loading" class="qrcode-component">
+        <h1>Profile QRcode</h1>
+        <p>Scan to generate secret key</p>
+        <img [src]="qrCode" alt="qrcode">
+    </div>
+</div>

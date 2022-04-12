@@ -5,6 +5,8 @@ import { UserService } from 'src/app/services/user.service';
 import { CookieService } from 'ngx-cookie';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Title } from '@angular/platform-browser';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginSecretDialogComponent } from './login-secret-dialog/login-secret-dialog.component';
 
 @Component({
   selector: 'app-login',
@@ -27,7 +29,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private cookieService: CookieService,
     private _snackBar: MatSnackBar,
-    private titleService: Title
+    private titleService: Title,
+    private matDialog: MatDialog
   ) {
     this.loading = false;
   }
@@ -68,15 +71,10 @@ export class LoginComponent implements OnInit {
             // get jwt token from the server
             const token = res.token;
 
-            // set expiry date
-            const expiryDate: Date = new Date();
-            expiryDate.setHours(expiryDate.getHours() + 24);
-
-            // save cookie
-            this.cookieService.put('token', token, { expires: expiryDate});
-
-            // navigate to dashboard
-            this.router.navigate(['/dashboard']);
+            const verificationDialog = this.matDialog.open(LoginSecretDialogComponent);
+            const instance = verificationDialog.componentInstance
+            instance.token = token;
+           
           }
 
           this.loading = false;

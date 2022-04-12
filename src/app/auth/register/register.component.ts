@@ -4,9 +4,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { matchValidator } from 'src/app/utils/validators/rePassword';
 import { environment } from 'src/environments/environment';
-import { CookieService } from "ngx-cookie";
-import { Router } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { MatDialog } from '@angular/material/dialog';
+import { QrcodeVerificationComponent } from '../qrcode-verification/qrcode-verification.component';
 
 
 @Component({
@@ -44,9 +44,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     private _snackBar: MatSnackBar,
-    private cookieService: CookieService,
-    private router: Router,
-    private titleService: Title
+    private titleService: Title,
+    private _matDialog: MatDialog
     ) {
     this.loading = false;
   }
@@ -63,6 +62,8 @@ export class RegisterComponent implements OnInit {
 
         this.httpClient.post(url, this.registerForm.value).subscribe({
           next: (response: any) => {
+
+            console.log(response);
             if(response.error) {
 
               // if error show snackbar with the error message
@@ -74,16 +75,20 @@ export class RegisterComponent implements OnInit {
             } else {
               // get jwt token from the server
               const token = response.token.token;
+              
+              // qrcode
+              const qr = response.token.qrcode;
 
-              // set expiry date
-              const expiryDate: Date = new Date();
-              expiryDate.setHours(expiryDate.getHours() + 24)
+              const component = this._matDialog.open(QrcodeVerificationComponent);
+              let instance = component.componentInstance.qrCode = qr;
+              component.componentInstance.token = token;
 
-              // save cookie
-              this.cookieService.put('token', token, { expires: expiryDate});
 
-              // navigate to dashboard
-              this.router.navigate(['/dashboard']);
+
+
+              // after the qrcode token is verified
+
+              
             }
             this.loading = false;
           },

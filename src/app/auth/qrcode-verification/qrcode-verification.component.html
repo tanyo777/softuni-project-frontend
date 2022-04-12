@@ -1,0 +1,12 @@
+<div>
+    <img [src]="qrCode" alt="qrcode">
+    <form [formGroup]="verificationForm" (ngSubmit)="sendVerificationToken()">
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Secret Key</mat-label>
+            <input matInput placeholder="xxxxxx" #token formControlName="secretKey">
+            <mat-error *ngIf="verificationForm.controls['secretKey'].hasError('required') && verificationForm.controls['secretKey'].touched">Secret Key is required!</mat-error>
+            <mat-error *ngIf="verificationForm.controls['secretKey'].hasError('minlength') && verificationForm.controls['secretKey'].touched">Secret Key must be 6 characters!</mat-error>
+          </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Verify</button>
+    </form>
+</div>

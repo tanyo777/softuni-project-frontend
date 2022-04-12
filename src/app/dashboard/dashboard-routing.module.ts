@@ -5,6 +5,7 @@ import { CreateprojectComponent } from './createproject/createproject.component'
 import { DashboardComponent } from './dashboard.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProjectComponent } from './project/project.component';
+import { QrcodeComponent } from './qrcode/qrcode.component';
 import { SystemComponent } from './system/system.component';
 import { UserProjectsComponent } from './user-projects/user-projects.component';
 
@@ -15,7 +16,8 @@ const routes: Routes = [
     { path: 'projects', component: UserProjectsComponent },
     { path: 'create-project', component: CreateprojectComponent },
     { path: "projects/:id", component: ProjectComponent},
-    { path: "profile", component: ProfileComponent}
+    { path: "profile", component: ProfileComponent},
+    { path: "qrcode", component: QrcodeComponent}
   ] },
 ];
 

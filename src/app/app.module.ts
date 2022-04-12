@@ -18,6 +18,8 @@ import { MatButtonModule } from "@angular/material/button";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import {MatMenuModule} from '@angular/material/menu';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MatDialogModule } from '@angular/material/dialog';
+
 
 // reactive form 
 import { ReactiveFormsModule } from '@angular/forms';
@@ -34,6 +36,8 @@ import { StoreModule } from '@ngrx/store';
 import { environment } from '../environments/environment';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { dropdownsReducer } from './+store/reducers/dropdownsReducer';
+import { QrcodeVerificationComponent } from './auth/qrcode-verification/qrcode-verification.component';
+import { LoginSecretDialogComponent } from './auth/login/login-secret-dialog/login-secret-dialog.component';
 
 
 @NgModule({
@@ -45,6 +49,8 @@ import { dropdownsReducer } from './+store/reducers/dropdownsReducer';
     HomeComponent,
     SpinnerComponent,
     NotfoundComponent,
+    QrcodeVerificationComponent,
+    LoginSecretDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +67,7 @@ import { dropdownsReducer } from './+store/reducers/dropdownsReducer';
     MatMenuModule,
     HttpClientModule,
     MatSnackBarModule,
+    MatDialogModule,
     CookieModule.forRoot(),
     ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: environment.production,

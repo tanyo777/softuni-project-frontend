@@ -39,6 +39,7 @@ import { InvitedialogComponent } from './project/invitedialog/invitedialog.compo
 import { LeaveDialogComponent } from './project/leave-dialog/leave-dialog.component';
 import { LeaveDialogManagerComponent } from './project/leave-dialog-manager/leave-dialog-manager.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { QrcodeComponent } from './qrcode/qrcode.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     InvitedialogComponent,
     LeaveDialogComponent,
     LeaveDialogManagerComponent,
+    QrcodeComponent,
 
   ],
   imports: [

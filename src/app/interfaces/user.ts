@@ -13,6 +13,8 @@ export interface IUser {
     _id: string;
     createdAt: string;
     updatedAt: string;
+    secret: string;
+    otpauth_url: string;
 }
 
 

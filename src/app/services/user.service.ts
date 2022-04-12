@@ -39,4 +39,12 @@ export class UserService {
   inviteUser(email: string, projectId: string): Observable<object> {
     return this.httpClient.post(`${environment.baseUrl}/user/invite`, { email, projectId });
   }
+
+  verify(secretKey: string, token: string): Observable<object> {
+    return this.httpClient.post(`${environment.baseUrl}/verify`, { secretKey, token });
+  }
+
+  getProfileQrcode(otpauth_url: string): Observable<object> {
+    return this.httpClient.post(`${environment.baseUrl}/qrcode`, { otpauth_url });
+  }
 }
