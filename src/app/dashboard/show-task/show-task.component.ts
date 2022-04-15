@@ -85,8 +85,10 @@ export class ShowTaskComponent implements OnInit {
         next: (res: any) => {
           let { summary, issueType, priority, description, createdAt, updatedAt, assignedTo } = editValues;
 
+          console.log(editValues);
+
           // put the edited task to the store
-          this.store.dispatch(editTaskProps({ id, summary, issueType, priority, description, createdAt, updatedAt, assignedTo}));
+          this.store.dispatch(editTaskProps({ id, summary, issueType, priority, description, assignedTo}));
           this.closeDialog();
         },
         error: (error: Error) => {

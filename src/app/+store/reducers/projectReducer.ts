@@ -52,6 +52,7 @@ export const projectReducer = createReducer(
             ...state.lastViewedProject,
            tasks: state.lastViewedProject.tasks.map((obj: any) => {
                if(obj._id === id) {
+                   console.log(obj);
                    obj = {
                        ...obj,
                        id,
@@ -59,8 +60,6 @@ export const projectReducer = createReducer(
                        issueType,
                        priority,
                        description,
-                       createdAt,
-                       updatedAt,
                        assignedTo
                    }
                    
