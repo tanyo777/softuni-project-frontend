@@ -1,6 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { EditComponent } from '../edit/edit.component';
 
 @Component({
   selector: 'app-inner-section',
@@ -14,17 +12,9 @@ export class InnerSectionComponent implements OnInit {
 
   @Input() sectionValue: string | undefined = "";
 
-  constructor(private dialog: MatDialog) {
+  constructor() {
   }
 
   ngOnInit(): void {
   }
-
-
-  changeUserProfileProperty(): void {
-    const dialog = this.dialog.open(EditComponent);
-    const instance = dialog.componentInstance;
-    instance.label = this.header;
-  }
-
 }

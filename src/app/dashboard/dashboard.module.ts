@@ -31,7 +31,6 @@ import {DragDropModule} from '@angular/cdk/drag-drop';
 import { DraganddropComponent } from './draganddrop/draganddrop.component';
 import { ShowTaskComponent } from './show-task/show-task.component';
 import { InnerSectionComponent } from './profile/inner-section/inner-section.component';
-import { EditComponent } from './profile/edit/edit.component';
 import { IssuebtnComponent } from './issuebtn/issuebtn.component';
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatNativeDateModule } from '@angular/material/core';
@@ -56,7 +55,6 @@ import { QrcodeComponent } from './qrcode/qrcode.component';
     DraganddropComponent,
     ShowTaskComponent,
     InnerSectionComponent,
-    EditComponent,
     IssuebtnComponent,
     InvitedialogComponent,
     LeaveDialogComponent,

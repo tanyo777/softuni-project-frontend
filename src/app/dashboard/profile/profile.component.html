@@ -7,28 +7,16 @@
   <div class="profile" *ngIf="!loading">
     <app-profilepic></app-profilepic>
     <h2>Profile</h2>
-    <div class="inner">
+    <div class="inner profile-section">
       <app-inner-section [header]="'Username'" [sectionValue]="user?.username"></app-inner-section>
-    </div>
-  </div>
-
-  <div class="about" *ngIf="!loading">
-    <h2>About you</h2>
-    <div class="inner">
       <app-inner-section [header]="'Account Name'" [sectionValue]="user?.fullName"></app-inner-section>
     </div>
   </div>
 
   <div class="contacts" *ngIf="!loading">
-    <h2>Contacts</h2>
-    <div class="inner">
-      <app-inner-section [header]="'Email Address'" [sectionValue]="user?.email"></app-inner-section>
+    <h2>Places you work</h2>
+    <div class="inner" *ngFor="let workPlace of workPlaces">
+        <app-inner-section [header]="'Project Name'" [sectionValue]="workPlace.name"></app-inner-section>
     </div>
   </div>
 </div>
-
-
-<!-- <h2 
-style="margin-top: 100px;"
-*ngIf="loading"
->Loading...</h2> -->
