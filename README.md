@@ -2,6 +2,8 @@
 
 The application is deployed at: https://softuni-frontend.web.app/
 
+You must have google authenticator installed on your mobile device in order to authenticate yourself in the app
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
 
 ## Development server
