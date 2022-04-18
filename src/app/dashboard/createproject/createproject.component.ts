@@ -7,6 +7,7 @@ import { switchMap } from 'rxjs';
 import { ProjectService } from 'src/app/services/project.service';
 import { UserService } from 'src/app/services/user.service';
 import { populateUser } from 'src/app/+store/actions/user';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-createproject',
@@ -27,12 +28,13 @@ export class CreateprojectComponent implements OnInit {
   });
 
   constructor(
-    private titleService: Title, 
+    private titleService: Title,
     private projectsService: ProjectService,
     private router: Router,
     private userService: UserService,
-    private store: Store
-    ) { }
+    private store: Store,
+    private _snackbar: MatSnackBar
+  ) { }
 
   ngOnInit(): void {
     this.titleService.setTitle("Create Project");
@@ -40,25 +42,43 @@ export class CreateprojectComponent implements OnInit {
 
 
   createProject() {
-    if(this.newProjectForm.valid) {
+    if (this.newProjectForm.valid) {
       this.loading = true;
 
-      this.projectsService.postProject(this.newProjectForm.value).pipe(
-        switchMap(data => this.userService.getUser())
-      ).subscribe({
+
+      this.projectsService.postProject(this.newProjectForm.value).subscribe({
         next: (res: any) => {
-          const user = res.user;
+          if (res.error) {
+            this._snackbar.open(res.error, 'close');
+            setTimeout(() => {
+              this._snackbar.dismiss();
+            }, 2500)
+            this.loading = false;
+          } else {
+            this.userService.getUser().subscribe({
+              next: (res: any) => {
+                const user = res.user;
 
-          this.store.dispatch(populateUser({ user }));
+                this.store.dispatch(populateUser({ user }));
 
-          this.loading = false;
-          this.router.navigate(['/dashboard/projects']);
+                this.loading = false;
+                this.router.navigate(['/dashboard/projects']);
+              },
+              error: (err) => {
+                this._snackbar.open(err.message, 'close');
+                setTimeout(() => {
+                  this._snackbar.dismiss();
+                }, 2500)
+                this.loading = false;
+              }
+            })
+          }
         },
-        error: () => {
+        error: (err) => {
+          this._snackbar.open(err.message, 'close');
           this.loading = false;
         }
       })
-
     }
   }
 }
