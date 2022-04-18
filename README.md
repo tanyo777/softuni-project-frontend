@@ -1,9 +1,5 @@
 # Frontend
 
-WARNING!!! The deployed app has some issues with the create project feature! The reason is that heroku servers have issue with github deploys !
-
-Run the whole project on your local machine.
-
 The application is deployed at: https://softuni-frontend.web.app/
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
